@@ -7,7 +7,7 @@ Notes on Spring:
   - Do take note that there are minor differences in how each look for a bean, example, @Resource prioritizes Bean-Type check over Bean-Name (unless specified)
 
 # BEAN AUTO-DISCOVERY:
-- <context-componentscan>com.myApp.beans</context-componentscan>
+- &lt;context-componentscan>com.myApp.beans&lt;/context-componentscan>
 
 # APPLICATION CONTEXT:
 Getting the Application-Context xml from filesystem
