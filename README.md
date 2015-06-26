@@ -22,4 +22,4 @@ Getting the Application-Context xml from filesystem
  # SPEL
 - Use #{} to evaluate Spring Expression Language.
 - Can be used to get a method or property of another bean eg. <property name="personality" value="#{MyProperties.getPersonality()}"></property>
-#- ?. operator will only invoke the succeeding code, if the preceeding code is not null
+- <b>?. operator will only invoke the succeeding code, if the preceeding code is not null<b>
