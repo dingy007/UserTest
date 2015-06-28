@@ -1,23 +1,22 @@
 <%@ include file="header_footer/header.jsp" %>
-<h1>My Contact List</h1>
-	<c:if test="${! empty quoteList}">
+<h1>Listing All Users:</h1>
+	<c:if test="${! empty usersList}">
 		<table>
 			<tr>
-				<th>Id</th>
-				<th>Company Name</th>
-				<th>Company Initials</th>
-				<th>Person In Charge</th>
-				<th>Total amount</th>
-				
+				<th>User Id</th>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>Badge Id</th>
+				<th>User Email Address</th>
 			</tr>
-			<c:forEach items="${quoteList}" var="quote">
+			<c:forEach items="${usersList}" var="user">
 				<tr>
-					<td>${quote.id}</td>
-					<td>${quote.c_name}</td>
-					<td>${quote.c_initials }</td>
-					<td>${quote.person_in_charge}</td>
-					<td>${quote.amount}</td>
-					<td><a href="delete/${quote.id}">Delete</a></td>
+					<td>${user.userId}</td>
+					<td>${user.fname}</td>
+					<td>${user.lname }</td>
+					<td>${user.badgeId}</td>
+					<td>${user.details.emailAddress}</td>
+					<td><a href="delete/${user.userId}">Delete</a></td>
 				</tr>		
 			</c:forEach>
 		</table>

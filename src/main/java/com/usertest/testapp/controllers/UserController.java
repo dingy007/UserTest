@@ -1,13 +1,17 @@
 package com.usertest.testapp.controllers;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -32,6 +36,13 @@ public class UserController {
 		logger.info("    -> @UserController.homePage serving home.jsp");
 		return "home";
 	}
+	
+	@RequestMapping("/home")
+	public String gotoHomePage() {
+		logger.info("    -> @UserController.gotoHomePage");
+		logger.info("    -> @UserController.gotoHomePage serving home.jsp");
+		return "home";
+	}
 
 	@RequestMapping(value="/showUserForm", method=RequestMethod.GET)
 	public String showAddUserForm(@ModelAttribute("user") User user, BindingResult result) {
@@ -41,16 +52,29 @@ public class UserController {
 	}
 
 	@RequestMapping(value="/listAllUsers",method=RequestMethod.GET)
-	public String showListAllUsers() {
+	public ModelAndView showListAllUsers() {
 		logger.info("    -> @UserController.showListAllUsers");
+		List<User> usersList = userServices.listAllUsers();
+		
+		if (usersList.isEmpty()) {
+			throw new RuntimeException("No Valid data.");
+		}
+		logger.info("    -> @UserController.showListAllUsers : Listing all usersList");
+		
+		for (User user: usersList) {
+			logger.info("User: " + user.toString());
+		}
+		ModelAndView mav = new ModelAndView("listAllUsers");
+		mav.addObject("usersList", usersList);
 		logger.info("    -> @UserController.showListAllUsers serving listAllUsers.jsp");
-		return "listAllUsers";
+		return mav;
 	}
 
 	@RequestMapping(value="/listAllUserDetails",method=RequestMethod.GET)
 	public String showListAllUserDetails() {
 		logger.info("    -> @UserController.showListAllUserDetails");
 		logger.info("    -> @UserController.showListAllUserDetails serving listAllUserDetails.jsp");
+
 		return "listAllUserDetails";
 	}
 
@@ -75,7 +99,17 @@ public class UserController {
 				logger.info("    -> @UserController.addNewUser adding to table Completed.");
 		}
 		return mav;
-
+	}
+	
+	@RequestMapping(value="/delete/{userId}")
+	public String deleteUserByUserId(@PathVariable("userId") int userId) {
+		logger.info("    -> @UserController.deleteUserByUserId.");
+		boolean success = false;
+		success = userServices.deleteUserByUserId(userId);
+		if (!success) throw new DataAccessException("Unable to delete User with User Id: " + userId) {
+			private static final long serialVersionUID = 1L;}; 
+		logger.info("    -> @UserController.deleteUserByUserId Completed.");
+		return "listAllUsers";
 	}
 
 }
