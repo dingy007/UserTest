@@ -6,4 +6,33 @@
 		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
 
 
+	<security:authentication-manager>
+		<security:authentication-provider>
+			<security:user-service>
+				<security:user name="john" authorities="admin"
+					password="letmein" />
+				<security:user name="zog" authorities="admin"
+					password="iamzog" />
+			</security:user-service>
+		</security:authentication-provider>
+	</security:authentication-manager>
+	
+	<security:http use-expressions="true">
+		<!-- Spring will walk down this list, always ensure a catch-all /** at the bottom -->
+		<security:intercept-url pattern="/addNewUser" access="isAuthenticated()" />
+		<security:intercept-url pattern="/showUserForm" access="isAuthenticated()" />
+		<security:intercept-url pattern="/" access="permitAll" />
+		<security:intercept-url pattern="/resources/**" access="permitAll" />
+		<security:intercept-url pattern="/css/**" access="permitAll" />
+		<security:intercept-url pattern="/js/**" access="permitAll" />
+		<security:intercept-url pattern="/listAllUsers" access="permitAll" />
+		<security:intercept-url pattern="/**" access="denyAll" />
+		
+		
+		<security:form-login />
+		
+		
+		
+		
+	</security:http>
 </beans>
