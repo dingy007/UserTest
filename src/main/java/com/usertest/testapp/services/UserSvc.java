@@ -52,4 +52,11 @@ public class UserSvc {
 		logger.info("->		@UserSvc.generateBadgeNumber Completed");
 		return badgeId;
 	}
+	
+	@Transactional
+	public boolean deleteUserByUserId(int userId) {
+		logger.info("->		@UserSvc.deleteUserByUserId");
+		logger.info("->		@UserSvc.deleteUserByUserId Completed");
+		return userdao.deleteUser(userId);
+	}
 }
