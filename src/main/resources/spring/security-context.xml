@@ -15,24 +15,26 @@
 					password="iamzog" />
 			</security:user-service>
 		</security:authentication-provider>
+		<security:authentication-provider>
+			<security:jdbc-user-service data-source-ref="dataSource" />
+		</security:authentication-provider>
 	</security:authentication-manager>
-	
+
 	<security:http use-expressions="true">
 		<!-- Spring will walk down this list, always ensure a catch-all /** at the bottom -->
-		<security:intercept-url pattern="/addNewUser" access="isAuthenticated()" />
-		<security:intercept-url pattern="/showUserForm" access="isAuthenticated()" />
 		<security:intercept-url pattern="/" access="permitAll" />
 		<security:intercept-url pattern="/resources/**" access="permitAll" />
 		<security:intercept-url pattern="/css/**" access="permitAll" />
 		<security:intercept-url pattern="/js/**" access="permitAll" />
+		<security:intercept-url pattern="/fonts/**" access="permitAll" />
+		<security:intercept-url pattern="/login" access="permitAll" />
+		<security:intercept-url pattern="/addNewUser" access="isAuthenticated()" />
+		<security:intercept-url pattern="/showUserForm" access="isAuthenticated()" />
+
 		<security:intercept-url pattern="/listAllUsers" access="permitAll" />
+		
 		<security:intercept-url pattern="/**" access="denyAll" />
-		
-		
-		<security:form-login />
-		
-		
-		
-		
+		<!-- Adding a failure url-parameter that returns true if authentication fails, but the form is the same '/login' -->
+		<security:form-login login-page="/login" authentication-failure-url="/login?error=true" />
 	</security:http>
 </beans>
