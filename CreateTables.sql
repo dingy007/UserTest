@@ -125,6 +125,31 @@ CREATE TABLE IF NOT EXISTS `HibernateSpringWebProject`.`authorities` (
   PRIMARY KEY (`username`))
 ENGINE = InnoDB;
 
+-- -----------------------------------------------------
+-- Table `HibernateSpringWebProject`.`users`
+-- -----------------------------------------------------
+-- CREATE TABLE `HibernateSpringWebProject`.`users` (
+--   `USER_ID` int(10) unsigned NOT NULL,
+--   `USERNAME` varchar(40) NOT NULL,
+-- `PASSWORD` varchar(40) NOT NULL,
+--   `ACTIVE` tinyint(1) NOT NULL,
+--   PRIMARY KEY  (`USER_ID`)
+-- ) ENGINE=InnoDB DEFAULT CHARSET=latin1
+
+
+-- -----------------------------------------------------
+-- Table `HibernateSpringWebProject`.`user_roles`
+-- -----------------------------------------------------
+CREATE TABLE `HibernateSpringWebProject`.`user_roles` (
+  `USER_ROLE_ID` int(10) unsigned NOT NULL,
+  `USER_ID` int(10) unsigned NOT NULL,
+  `AUTHORITY` varchar(45) NOT NULL,
+  PRIMARY KEY  (`USER_ROLE_ID`),
+  KEY `FK_user_roles` (`USER_ID`),
+  CONSTRAINT `FK_user_roles` FOREIGN KEY (`USER_ID`) REFERENCES `users` (`USER_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+
+
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
