@@ -28,7 +28,7 @@ public class DetailsSvc {
 	@Transactional
 	public void addDetails(Details details) {
 		logger.info("->		@DetailsSvc.addDetails");
-		details.setEmailAddress(generateEmailAddress(details.getUser()));
+		details.setEmailAddress(generateEmailAddress(details.getEmployee()));
 		detailsDao.addUserDetails(details);
 		logger.info("->		@DetailsSvc.addDetails Completed");
 	}

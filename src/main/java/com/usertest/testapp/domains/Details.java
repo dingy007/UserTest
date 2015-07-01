@@ -19,7 +19,7 @@ import org.slf4j.LoggerFactory;
 
 
 @Entity
-@Table(name="UserDetails")
+@Table(name="EmployeeDetails")
 public class Details implements Serializable{
 	@Transient
 	Logger logger = LoggerFactory.getLogger(Details.class);
@@ -28,13 +28,13 @@ public class Details implements Serializable{
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int detailsId;
 	
-	@Column(name="User_Email")
+	@Column(name="Employee_Email")
 	@Email
 	private String emailAddress;
 	
 	@OneToOne(orphanRemoval=true, fetch=FetchType.LAZY, optional=true)
-	@JoinColumn(name="UserFk")
-	private Employee user;
+	@JoinColumn(name="EmployeeFk")
+	private Employee employee;
 
 	public int getDetailsId() {
 		return detailsId;
@@ -59,12 +59,12 @@ public class Details implements Serializable{
 				//+ emailAddress + ", user=" + user + "]";
 	}
 
-	public Employee getUser() {
-		return user;
+	public Employee getEmployee() {
+		return employee;
 	}
 
-	public void setUser(Employee user) {
-		this.user = user;
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
 	}
 	
 }

@@ -19,14 +19,14 @@ import org.springframework.web.servlet.ModelAndView;
 import com.usertest.testapp.domains.Details;
 import com.usertest.testapp.domains.Employee;
 import com.usertest.testapp.services.DetailsSvc;
-import com.usertest.testapp.services.UserSvc;
+import com.usertest.testapp.services.EmployeeSvc;
 
 @Controller
 public class UserController {
 
 	Logger logger = LoggerFactory.getLogger(UserController.class);
 	@Autowired
-	UserSvc userServices;
+	EmployeeSvc employeeServices;
 	@Autowired
 	DetailsSvc detailsServices;
 
@@ -54,7 +54,7 @@ public class UserController {
 	@RequestMapping(value="/listAllUsers",method=RequestMethod.GET)
 	public ModelAndView showListAllUsers() {
 		logger.info("    -> @UserController.showListAllUsers");
-		List<Employee> usersList = userServices.listAllUsers();
+		List<Employee> usersList = employeeServices.listAllEmployees();
 		
 		if (usersList.isEmpty()) {
 			throw new RuntimeException("No Valid data.");
@@ -79,7 +79,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value="/addNewUser", method=RequestMethod.POST)
-	public ModelAndView addNewUser(@ModelAttribute("user") @Valid Employee user, BindingResult result) {
+	public ModelAndView addNewUser(@ModelAttribute("user") @Valid Employee employee, BindingResult result) {
 		ModelAndView mav = new ModelAndView();
 		if (result.hasErrors()) {
 			logger.info("    -> @UserController.addNewUser has Errors");
@@ -89,11 +89,11 @@ public class UserController {
 		else {
 				mav.setViewName("addedNewUser");
 				logger.info("    -> @UserController.addNewUser adding to table using the UserSvc(userServices)");
-				logger.info("    -> @UserController.addNewUser user has the values: " + user.toString());
-				userServices.addUser(user);
+				logger.info("    -> @UserController.addNewUser user has the values: " + employee.toString());
+				employeeServices.addEmployee(employee);
 				logger.info("    -> @UserController.addNewUser adding to table using the UserSvc(userServices) Completed");
 				Details details = new Details();
-				details.setUser(user);
+				details.setEmployee(employee);
 				detailsServices.addDetails(details);
 				logger.info("    -> @UserController.addNewUser printing Details: " + details.toString());
 				logger.info("    -> @UserController.addNewUser adding to table Completed.");
@@ -102,11 +102,11 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/delete/{userId}")
-	public String deleteUserByUserId(@PathVariable("userId") int userId) {
+	public String deleteEmployeeByEmployeeId(@PathVariable("userId") int employeeId) {
 		logger.info("    -> @UserController.deleteUserByUserId.");
 		boolean success = false;
-		success = userServices.deleteUserByUserId(userId);
-		if (!success) throw new DataAccessException("Unable to delete User with User Id: " + userId) {
+		success = employeeServices.deleteEmployeeByEmployeeId(employeeId);
+		if (!success) throw new DataAccessException("Unable to delete User with User Id: " + employeeId) {
 			private static final long serialVersionUID = 1L;}; 
 		logger.info("    -> @UserController.deleteUserByUserId Completed.");
 		return "listAllUsers";
