@@ -10,31 +10,29 @@
 		<security:authentication-provider>
 			<!-- 		
 			<security:user-service>
-				<security:user name="john" authorities="admin"
-					password="letmein" />
-				<security:user name="zog" authorities="admin"
-					password="iamzog" />
+				<security:user name="user1" authorities="admin"
+					password="user1" />
+				<security:user name="user2" authorities="admin"
+					password="user2" />
 			</security:user-service>
 			 -->
 			<security:jdbc-user-service data-source-ref="dataSource"
-				users-by-username-query="select username, password, active from users where username=?"
-				authorities-by-username-query="select us.username, ur.authority from users us, user_roles ur 
-        where us.user_id = ur.user_id and us.username =?  " />
-		<!-- </security:authentication-provider> -->
-		<!-- <security:authentication-provider>
-			<security:jdbc-user-service data-source-ref="dataSource" />
-		</security:authentication-provider> -->
+				users-by-username-query="select username, password, enabled from users where username=?"
+				authorities-by-username-query="select us.username, ur.authority from users us, user_roles ur where us.user_id = ur.user_id and us.username =?  "/>
 		</security:authentication-provider>  
 	</security:authentication-manager>
 
 	<security:http use-expressions="true">
 		<!-- Spring will walk down this list, always ensure a catch-all /** at the bottom -->
 		<security:intercept-url pattern="/" access="permitAll" />
+		<security:intercept-url pattern="/home" access="permitAll" />
 		<security:intercept-url pattern="/resources/**" access="permitAll" />
 		<security:intercept-url pattern="/css/**" access="permitAll" />
 		<security:intercept-url pattern="/js/**" access="permitAll" />
 		<security:intercept-url pattern="/fonts/**" access="permitAll" />
 		<security:intercept-url pattern="/login" access="permitAll" />
+		<security:intercept-url pattern="/newaccount" access="permitAll" />
+		<security:intercept-url pattern="/createAccount" access="permitAll" />
 		<security:intercept-url pattern="/addNewUser" access="isAuthenticated()" />
 		<security:intercept-url pattern="/showUserForm" access="isAuthenticated()" />
 

@@ -12,7 +12,7 @@ import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 
 import com.usertest.testapp.dao.Userdao;
-import com.usertest.testapp.domains.User;
+import com.usertest.testapp.domains.Employee;
 
 @Service("userServices")
 public class UserSvc {
@@ -25,7 +25,7 @@ public class UserSvc {
 	
 	Logger logger = LoggerFactory.getLogger(UserSvc.class);
 	@Transactional
-	public void addUser(User user) {
+	public void addUser(Employee user) {
 		logger.info("->		@UserSvc.addUser");
 		user.setBadgeId(generateBadgeNumber());
 		userdao.addUser(user);
@@ -33,9 +33,9 @@ public class UserSvc {
 	}
 	
 	@Transactional
-	public List<User> listAllUsers() {
+	public List<Employee> listAllUsers() {
 		logger.info("->		@UserSvc.listAllUsers");
-		List<User> users = userdao.listAllUsers();
+		List<Employee> users = userdao.listAllUsers();
 		logger.info("->		@UserSvc.listAllUsers Completed");
 		return users;
 	}

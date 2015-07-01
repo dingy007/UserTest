@@ -34,7 +34,7 @@ public class Details implements Serializable{
 	
 	@OneToOne(orphanRemoval=true, fetch=FetchType.LAZY, optional=true)
 	@JoinColumn(name="UserFk")
-	private User user;
+	private Employee user;
 
 	public int getDetailsId() {
 		return detailsId;
@@ -59,11 +59,11 @@ public class Details implements Serializable{
 				//+ emailAddress + ", user=" + user + "]";
 	}
 
-	public User getUser() {
+	public Employee getUser() {
 		return user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(Employee user) {
 		this.user = user;
 	}
 	

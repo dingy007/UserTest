@@ -17,13 +17,14 @@
 	<body onload="document.f.username.focus();">
 		<div class="container">
 			<h3>Login with Username and Password</h3>
-			
+			<br>
 			<c:if test="${param.error != null }">
 				<p>
 					<span class="error">Login failed. Check your user-name & password are correct.</span>
 				</p>
 			</c:if>
 			<!-- <form name="f" action="/usertest/login" method="POST"> -->
+			<br><br>
 			<form name="f" action="${pageContext.request.contextPath}/login" method="POST"> 
 				<table>
 					<tbody>
@@ -41,6 +42,8 @@
 				</table>
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 			</form>
+			<p> <a href="<c:url value="/newaccount"/>">Create new account</a> 
+			</p>
 		</div>
 	</body>
 </html>

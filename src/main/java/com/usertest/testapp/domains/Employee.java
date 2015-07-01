@@ -18,11 +18,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Entity
-@Table(name="Usr")
-public class User implements Serializable{
+@Table(name="Employee")
+public class Employee implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Transient
-	Logger logger = LoggerFactory.getLogger(User.class);
+	Logger logger = LoggerFactory.getLogger(Employee.class);
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)

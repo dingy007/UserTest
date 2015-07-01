@@ -106,51 +106,81 @@ DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------
--- Table `HibernateSpringWebProject`.`users`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `HibernateSpringWebProject`.`users` (
-  `username` VARCHAR(60) NOT NULL,
-  `password` VARCHAR(80) NULL,
-  `enabled` TINYINT NULL,
-  PRIMARY KEY (`username`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `HibernateSpringWebProject`.`authorities`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `HibernateSpringWebProject`.`authorities` (
   `username` VARCHAR(60) NOT NULL,
-  `authority` VARCHAR(45) NULL,
+  `authority` VARCHAR(45) NULL DEFAULT NULL,
   PRIMARY KEY (`username`))
-ENGINE = InnoDB;
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `HibernateSpringWebProject`.`table1`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `HibernateSpringWebProject`.`table1` (
+  `username` VARCHAR(60) NOT NULL,
+  `authority` VARCHAR(45) NULL DEFAULT NULL,
+  PRIMARY KEY (`username`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
 
 -- -----------------------------------------------------
 -- Table `HibernateSpringWebProject`.`users`
 -- -----------------------------------------------------
--- CREATE TABLE `HibernateSpringWebProject`.`users` (
---   `USER_ID` int(10) unsigned NOT NULL,
---   `USERNAME` varchar(40) NOT NULL,
--- `PASSWORD` varchar(40) NOT NULL,
---   `ACTIVE` tinyint(1) NOT NULL,
---   PRIMARY KEY  (`USER_ID`)
--- ) ENGINE=InnoDB DEFAULT CHARSET=latin1
+CREATE TABLE IF NOT EXISTS `HibernateSpringWebProject`.`users` (
+  `USER_ID` INT(10) NOT NULL,
+  `username` VARCHAR(60) NOT NULL,
+  `password` VARCHAR(80) NULL DEFAULT NULL,
+  `enabled` TINYINT(4) NULL DEFAULT NULL,
+  PRIMARY KEY (`USER_ID`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------
 -- Table `HibernateSpringWebProject`.`user_roles`
 -- -----------------------------------------------------
-CREATE TABLE `HibernateSpringWebProject`.`user_roles` (
-  `USER_ROLE_ID` int(10) unsigned NOT NULL,
-  `USER_ID` int(10) unsigned NOT NULL,
-  `AUTHORITY` varchar(45) NOT NULL,
-  PRIMARY KEY  (`USER_ROLE_ID`),
-  KEY `FK_user_roles` (`USER_ID`),
-  CONSTRAINT `FK_user_roles` FOREIGN KEY (`USER_ID`) REFERENCES `users` (`USER_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1
-
+CREATE TABLE IF NOT EXISTS `HibernateSpringWebProject`.`user_roles` (
+  `user_roles_id` INT NOT NULL,
+  `USER_ID` INT(10) NOT NULL,
+  `AUTHORITY` VARCHAR(45) NULL,
+  PRIMARY KEY (`user_roles_id`),
+  INDEX `fk_user_roles_1_idx` (`USER_ID` ASC),
+  CONSTRAINT `fk_user_roles_1`
+    FOREIGN KEY (`USER_ID`)
+    REFERENCES `HibernateSpringWebProject`.`users` (`USER_ID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+
+
+-- ADDING VALUES :
+-- 
+-- 
+-- 
+INSERT INTO `HibernateSpringWebProject`.`user_roles`
+(`user_roles_id`,
+`USER_ID`,
+`AUTHORITY`)
+VALUES
+(0,
+0,
+'admin_role');
+
+INSERT INTO `HibernateSpringWebProject`.`users`
+(`username`,
+`password`,
+`enabled`)
+VALUES
+('dinesh',
+'letmein',
+1);

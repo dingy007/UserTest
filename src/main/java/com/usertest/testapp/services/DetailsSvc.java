@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.usertest.testapp.dao.Detailsdao;
 import com.usertest.testapp.domains.Details;
-import com.usertest.testapp.domains.User;
+import com.usertest.testapp.domains.Employee;
 
 @Service("detailsServices")
 public class DetailsSvc {
@@ -41,7 +41,7 @@ public class DetailsSvc {
 		return detailsList;
 	}
 	
-	public String generateEmailAddress(User user) {
+	public String generateEmailAddress(Employee user) {
 		logger.info("->		@DetailsSvc.getEmailAddress");
 		String emailAddress = user.getFname().toString() + "@" + messageSource.getMessage("companyName", new Object[] {null}, Locale.getDefault())+".com";
 		logger.info("->		@DetailsSvc.getEmailAddress generated an email: " + emailAddress);

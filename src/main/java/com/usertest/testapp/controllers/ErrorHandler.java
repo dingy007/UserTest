@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class ErrorHandler {
 	
 	Logger logger = LoggerFactory.getLogger(ErrorHandler.class);
-/*	
+
 	@ExceptionHandler(value= {DataAccessException.class})
 	public String handleDataAccessExceptions(Exception ex) {
 		logger.info("    -> @ErrorHandler.handleDataAccessExceptions");
@@ -28,5 +28,5 @@ public class ErrorHandler {
 		logger.info("    -> @ErrorHandler.handleGenericExceptions");
 		logger.info("    -> @ErrorHandler.handleGenericExceptions serving errors.jsp");
 		return "errors";
-	}*/
+	}
 }

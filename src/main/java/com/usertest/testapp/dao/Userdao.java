@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.usertest.testapp.domains.User;
+import com.usertest.testapp.domains.Employee;
 
 @Repository("userdao")
 public class Userdao {
@@ -23,27 +23,27 @@ public class Userdao {
 	@Autowired
 	private SessionFactory sessionFactory;
 
-	public void addUser(User user) {
+	public void addUser(Employee user) {
 		logger.info("->		@Userdao.addUser");
 		sessionFactory.getCurrentSession().save(user);
 		logger.info("->		@Userdao.addUser Completed");
 	}
 
-	public List<User> listAllUsers() {
+	public List<Employee> listAllUsers() {
 		logger.info("->		@Userdao.listAllUsers");
-		List<User> users = null;
-		users = (List<User>) sessionFactory.getCurrentSession().createCriteria(User.class).list();
+		List<Employee> users = null;
+		users = (List<Employee>) sessionFactory.getCurrentSession().createCriteria(Employee.class).list();
 		logger.info("Obtained Users list: " + users.toString());
 		logger.info("->		@Userdao.listAllUsers Completed");
 		return users;
 	}
 	
-	public List<User> searchUserByUserFname(String search){
+	public List<Employee> searchUserByUserFname(String search){
 		Session session = sessionFactory.getCurrentSession();
-		List<User> allContacts = null;
+		List<Employee> allContacts = null;
 		String searchCrit = "%" + search + "%" ;
 		
-		Criteria crit = session.createCriteria(User.class);
+		Criteria crit = session.createCriteria(Employee.class);
 		Criterion fname = Restrictions.like("fname", searchCrit);
 //		Criterion lname = Restrictions.like("lastName", searchCrit);
 //		LogicalExpression exp = Restrictions.or(fname, lname);
@@ -56,7 +56,7 @@ public class Userdao {
 		logger.info("->		@Userdao.deleteUser");
 		boolean success = false;
 		Session session = sessionFactory.getCurrentSession();
-		Object user = sessionFactory.getCurrentSession().load(User.class, userId);
+		Object user = sessionFactory.getCurrentSession().load(Employee.class, userId);
 		logger.info("->		@Userdao.deleteUser Printing User: " + user );
 		if (user != null) {
 			sessionFactory.getCurrentSession().delete(user);

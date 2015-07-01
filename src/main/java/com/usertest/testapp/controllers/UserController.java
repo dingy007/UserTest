@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.usertest.testapp.domains.Details;
-import com.usertest.testapp.domains.User;
+import com.usertest.testapp.domains.Employee;
 import com.usertest.testapp.services.DetailsSvc;
 import com.usertest.testapp.services.UserSvc;
 
@@ -45,7 +45,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value="/showUserForm", method=RequestMethod.GET)
-	public String showAddUserForm(@ModelAttribute("user") User user, BindingResult result) {
+	public String showAddUserForm(@ModelAttribute("user") Employee user, BindingResult result) {
 		logger.info("    -> @UserController.showAddUserForm");
 		logger.info("    -> @UserController.showAddUserForm serving AddUser.jsp");
 		return "addUser";
@@ -54,14 +54,14 @@ public class UserController {
 	@RequestMapping(value="/listAllUsers",method=RequestMethod.GET)
 	public ModelAndView showListAllUsers() {
 		logger.info("    -> @UserController.showListAllUsers");
-		List<User> usersList = userServices.listAllUsers();
+		List<Employee> usersList = userServices.listAllUsers();
 		
 		if (usersList.isEmpty()) {
 			throw new RuntimeException("No Valid data.");
 		}
 		logger.info("    -> @UserController.showListAllUsers : Listing all usersList");
 		
-		for (User user: usersList) {
+		for (Employee user: usersList) {
 			logger.info("User: " + user.toString());
 		}
 		ModelAndView mav = new ModelAndView("listAllUsers");
@@ -79,7 +79,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value="/addNewUser", method=RequestMethod.POST)
-	public ModelAndView addNewUser(@ModelAttribute("user") @Valid User user, BindingResult result) {
+	public ModelAndView addNewUser(@ModelAttribute("user") @Valid Employee user, BindingResult result) {
 		ModelAndView mav = new ModelAndView();
 		if (result.hasErrors()) {
 			logger.info("    -> @UserController.addNewUser has Errors");
