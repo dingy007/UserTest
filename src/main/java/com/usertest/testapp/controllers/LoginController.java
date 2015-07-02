@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.usertest.testapp.dao.User;
+import com.usertest.testapp.domains.User;
 
 @Controller
 public class LoginController {

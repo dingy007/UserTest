@@ -14,7 +14,7 @@ import org.springframework.stereotype.Repository;
 
 import com.usertest.testapp.domains.Employee;
 
-@Repository("employeedao")
+@Repository("employeeDao")
 public class Employeedao {
 
 	Logger logger = LoggerFactory.getLogger(Employeedao.class);

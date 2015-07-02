@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.usertest.testapp.domains.Details;
 
-@Repository("UserDetailsdao")
+@Repository("EmployeeDetailsdao")
 public class Detailsdao {
 
 	Logger logger = LoggerFactory.getLogger(Detailsdao.class);
@@ -18,10 +18,10 @@ public class Detailsdao {
 	@Autowired
 	SessionFactory sessionFactory;
 	
-	public void addUserDetails(Details details) {
-		logger.info("->		@Detailsdao.addUserDetails");
+	public void addEmployeeDetails(Details details) {
+		logger.info("->		@Detailsdao.addEmployeeDetails");
 		sessionFactory.getCurrentSession().save(details);
-		logger.info("->		@Detailsdao.addUserDetails Completed");
+		logger.info("->		@Detailsdao.addEmployeeDetails Completed");
 	}
 	
 	@SuppressWarnings("unchecked")

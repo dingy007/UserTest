@@ -56,7 +56,7 @@ public class Details implements Serializable{
 	public String toString() {
 		return "Details [detailsId=" + detailsId + ", emailAddress="
 				+ emailAddress + "]";
-				//+ emailAddress + ", user=" + user + "]";
+				//+ emailAddress + ", Employee=" + employee + "]";
 	}
 
 	public Employee getEmployee() {

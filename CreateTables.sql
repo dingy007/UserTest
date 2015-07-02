@@ -6,21 +6,6 @@ CREATE SCHEMA IF NOT EXISTS `HibernateSpringWebProject` DEFAULT CHARACTER SET la
 USE `HibernateSpringWebProject` ;
 
 -- -----------------------------------------------------
--- Table `HibernateSpringWebProject`.`Contacts`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `HibernateSpringWebProject`.`Contacts` (
-  `contactId` INT(11) NOT NULL AUTO_INCREMENT,
-  `email` VARCHAR(255) NOT NULL,
-  `firstName` VARCHAR(255) NOT NULL,
-  `lastName` VARCHAR(255) NULL DEFAULT NULL,
-  `mobile` VARCHAR(255) NOT NULL,
-  PRIMARY KEY (`contactId`))
-ENGINE = InnoDB
-AUTO_INCREMENT = 5
-DEFAULT CHARACTER SET = latin1;
-
-
--- -----------------------------------------------------
 -- Table `HibernateSpringWebProject`.`Quote`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `HibernateSpringWebProject`.`Quote` (
@@ -57,22 +42,6 @@ CREATE TABLE IF NOT EXISTS `HibernateSpringWebProject`.`Invoice` (
 ENGINE = InnoDB
 AUTO_INCREMENT = 11
 DEFAULT CHARACTER SET = latin1;
-
-
--- -----------------------------------------------------
--- Table `HibernateSpringWebProject`.`NewContact`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `HibernateSpringWebProject`.`NewContact` (
-  `contactid` INT(11) NOT NULL AUTO_INCREMENT,
-  `email` VARCHAR(255) NULL DEFAULT NULL,
-  `first_name` VARCHAR(255) NULL DEFAULT NULL,
-  `last_name` VARCHAR(255) NULL DEFAULT NULL,
-  `phonenum` INT(11) NULL DEFAULT NULL,
-  PRIMARY KEY (`contactid`))
-ENGINE = InnoDB
-AUTO_INCREMENT = 2
-DEFAULT CHARACTER SET = latin1;
-
 
 -- -----------------------------------------------------
 -- Table `HibernateSpringWebProject`.`Employee`
@@ -111,7 +80,13 @@ DEFAULT CHARACTER SET = latin1;
 CREATE TABLE IF NOT EXISTS `HibernateSpringWebProject`.`authorities` (
   `username` VARCHAR(60) NOT NULL,
   `authority` VARCHAR(45) NULL DEFAULT NULL,
-  PRIMARY KEY (`username`))
+  PRIMARY KEY (`username`),
+  INDEX `fk_authorities_1_idx` (`username` ASC),
+  CONSTRAINT `fk_authorities_1`
+    FOREIGN KEY (`username`)
+    REFERENCES `HibernateSpringWebProject`.`users` (`username`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1;
 
@@ -119,12 +94,13 @@ DEFAULT CHARACTER SET = latin1;
 -- Table `HibernateSpringWebProject`.`users`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `HibernateSpringWebProject`.`users` (
-  `USER_ID` INT(10) NOT NULL,
+  `USER_ID` INT(10) NOT NULL AUTO_INCREMENT,
   `username` VARCHAR(60) NOT NULL,
   `password` VARCHAR(80) NULL DEFAULT NULL,
   `enabled` TINYINT(4) NULL DEFAULT NULL,
   PRIMARY KEY (`USER_ID`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = latin1;
 
 
@@ -159,16 +135,89 @@ INSERT INTO `HibernateSpringWebProject`.`user_roles`
 (`user_roles_id`,
 `USER_ID`,
 `AUTHORITY`)
-VALUES
-(0,
-0,
-'admin_role');
+VALUES(0,0,'admin_role');
 
 INSERT INTO `HibernateSpringWebProject`.`users`
-(`username`,
-`password`,
-`enabled`)
-VALUES
-('dinesh',
-'letmein',
-1);
+(`username`,`password`,`enabled`)
+VALUES('dinesh','letmein',1);
+
+-- ----------------------------------------------------------------------------------------------------
+-- ----------------------------------------------------------------------------------------------------
+-- ----------------------------------------------------------------------------------------------------
+-- ----------------------------------------------------------------------------------------------------
+
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
+
+-- -----------------------------------------------------
+-- Schema hibernatespringwebproject
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `hibernatespringwebproject` DEFAULT CHARACTER SET utf8 ;
+USE `hibernatespringwebproject` ;
+
+-- -----------------------------------------------------
+-- Table `hibernatespringwebproject`.`users`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `hibernatespringwebproject`.`users` (
+  `USER_ID` INT(10) NOT NULL AUTO_INCREMENT,
+  `username` VARCHAR(60) NOT NULL,
+  `password` VARCHAR(80) NULL DEFAULT NULL,
+  `enabled` TINYINT(4) NULL DEFAULT NULL,
+  PRIMARY KEY (`USER_ID`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `hibernatespringwebproject`.`authorities`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `hibernatespringwebproject`.`authorities` (
+  `authoritiesId` INT(11) NOT NULL AUTO_INCREMENT,
+  `authority` VARCHAR(45) NULL DEFAULT NULL,
+  `usernameFK` VARCHAR(60) NULL,
+  PRIMARY KEY (`authoritiesId`),
+  CONSTRAINT `usernameFkey`
+    FOREIGN KEY (`authoritiesId`)
+    REFERENCES `hibernatespringwebproject`.`users` (`USER_ID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `hibernatespringwebproject`.`employee`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `hibernatespringwebproject`.`employee` (
+  `EmployeeId` INT(11) NOT NULL AUTO_INCREMENT,
+  `badgeId` VARCHAR(255) NOT NULL,
+  `fname` VARCHAR(255) NOT NULL,
+  `lname` VARCHAR(255) NOT NULL,
+  PRIMARY KEY (`EmployeeId`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
+-- Table `hibernatespringwebproject`.`employeedetails`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `hibernatespringwebproject`.`employeedetails` (
+  `detailsId` INT(11) NOT NULL AUTO_INCREMENT,
+  `User_Email` VARCHAR(255) NULL DEFAULT NULL,
+  `EmployeeFk` INT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`detailsId`),
+  INDEX `FK_uglctohhwo0caxndtt6in82g` (`EmployeeFk` ASC),
+  CONSTRAINT `FK_uglctohhwo0caxndtt6in82g`
+    FOREIGN KEY (`EmployeeFk`)
+    REFERENCES `hibernatespringwebproject`.`employee` (`EmployeeId`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+

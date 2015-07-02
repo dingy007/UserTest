@@ -29,7 +29,7 @@ public class DetailsSvc {
 	public void addDetails(Details details) {
 		logger.info("->		@DetailsSvc.addDetails");
 		details.setEmailAddress(generateEmailAddress(details.getEmployee()));
-		detailsDao.addUserDetails(details);
+		detailsDao.addEmployeeDetails(details);
 		logger.info("->		@DetailsSvc.addDetails Completed");
 	}
 	
@@ -41,9 +41,9 @@ public class DetailsSvc {
 		return detailsList;
 	}
 	
-	public String generateEmailAddress(Employee user) {
+	public String generateEmailAddress(Employee employee) {
 		logger.info("->		@DetailsSvc.getEmailAddress");
-		String emailAddress = user.getFname().toString() + "@" + messageSource.getMessage("companyName", new Object[] {null}, Locale.getDefault())+".com";
+		String emailAddress = employee.getFname().toString() + "@" + messageSource.getMessage("companyName", new Object[] {null}, Locale.getDefault())+".com";
 		logger.info("->		@DetailsSvc.getEmailAddress generated an email: " + emailAddress);
 		logger.info("->		@DetailsSvc.getEmailAddress Completed");
 		return emailAddress;

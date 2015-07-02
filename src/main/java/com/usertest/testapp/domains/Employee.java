@@ -31,7 +31,7 @@ public class Employee implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int userId;
+	private int employeeId;
 	@Column
 	@NotNull
 	private String fname;
@@ -40,7 +40,7 @@ public class Employee implements Serializable{
 	private String lname;
 	@Column
 	private String badgeId;
-	@OneToOne(mappedBy="user",targetEntity=Details.class, orphanRemoval=true, fetch=FetchType.LAZY, optional=true, cascade=CascadeType.ALL)
+	@OneToOne(mappedBy="employee",targetEntity=Details.class, orphanRemoval=true, fetch=FetchType.LAZY, optional=true, cascade=CascadeType.ALL)
 	private Details details;
 	
 	public Logger getLogger() {
@@ -50,10 +50,10 @@ public class Employee implements Serializable{
 		this.logger = logger;
 	}
 	public int getUserId() {
-		return userId;
+		return employeeId;
 	}
 	public void setUserId(int userId) {
-		this.userId = userId;
+		this.employeeId = userId;
 	}
 	public String getFname() {
 		return fname;
@@ -75,7 +75,7 @@ public class Employee implements Serializable{
 	}
 	@Override
 	public String toString() {
-		return "User [userId=" + userId + ", fname=" + fname + ", lname="
+		return "Employee [EmployeeId=" + employeeId + ", fname=" + fname + ", lname="
 				+ lname + ", badgeId=" + badgeId + ", details=" + details + "]";
 	}
 	public Details getDetails() {

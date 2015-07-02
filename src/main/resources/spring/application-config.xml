@@ -9,7 +9,6 @@
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
 	<!--  Enable Annotations in POJOs (JSR-250)-->
