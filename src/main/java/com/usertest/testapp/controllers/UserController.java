@@ -44,72 +44,66 @@ public class UserController {
 		return "home";
 	}
 
-	@RequestMapping(value="/showUserForm", method=RequestMethod.GET)
-	public String showAddUserForm(@ModelAttribute("user") Employee user, BindingResult result) {
-		logger.info("    -> @UserController.showAddUserForm");
-		logger.info("    -> @UserController.showAddUserForm serving AddUser.jsp");
-		return "addUser";
+	@RequestMapping(value="/showEmployeeForm", method=RequestMethod.GET)
+	public String showAddEmployeeForm(@ModelAttribute("employee") Employee employee, BindingResult result) {
+		logger.info("    -> @UserController.showAddEmployeeForm");
+		logger.info("    -> @UserController.showAddEmployeeForm serving addEmployee.jsp");
+		return "addEmployee";
 	}
 
-	@RequestMapping(value="/listAllUsers",method=RequestMethod.GET)
-	public ModelAndView showListAllUsers() {
-		logger.info("    -> @UserController.showListAllUsers");
-		List<Employee> usersList = employeeServices.listAllEmployees();
+	@RequestMapping(value="/listAllEmployees",method=RequestMethod.GET)
+	public ModelAndView showListAllEmployees() {
+		logger.info("    -> @UserController.showListAllEmployees");
+		List<Employee> employeeList = employeeServices.listAllEmployees();
+
+		logger.info("    -> @UserController.showListAllEmployees : Listing all usersList");
 		
-		if (usersList.isEmpty()) {
-			throw new RuntimeException("No Valid data.");
-		}
-		logger.info("    -> @UserController.showListAllUsers : Listing all usersList");
-		
-		for (Employee user: usersList) {
-			logger.info("User: " + user.toString());
-		}
-		ModelAndView mav = new ModelAndView("listAllUsers");
-		mav.addObject("usersList", usersList);
-		logger.info("    -> @UserController.showListAllUsers serving listAllUsers.jsp");
+		ModelAndView mav = new ModelAndView("listAllEmployees");
+		mav.addObject("employeesList", employeeList);
+		logger.info("    -> @UserController.showListAllEmployees serving listAllEmployees.jsp");
 		return mav;
 	}
 
-	@RequestMapping(value="/listAllUserDetails",method=RequestMethod.GET)
+	@RequestMapping(value="/listAllEmployeeDetails",method=RequestMethod.GET)
 	public String showListAllUserDetails() {
-		logger.info("    -> @UserController.showListAllUserDetails");
-		logger.info("    -> @UserController.showListAllUserDetails serving listAllUserDetails.jsp");
+		logger.info("    -> @UserController.listAllEmployeeDetails");
+		logger.info("    -> @UserController.listAllEmployeeDetails serving listAllEmployeeDetails.jsp");
 
-		return "listAllUserDetails";
+		return "listAllEmployeeDetails";
 	}
 
-	@RequestMapping(value="/addNewUser", method=RequestMethod.POST)
-	public ModelAndView addNewUser(@ModelAttribute("user") @Valid Employee employee, BindingResult result) {
+	@RequestMapping(value="/addNewEmployee", method=RequestMethod.POST)
+	public ModelAndView addNewEmployee(@ModelAttribute("user") @Valid Employee employee, BindingResult result) {
 		ModelAndView mav = new ModelAndView();
 		if (result.hasErrors()) {
-			logger.info("    -> @UserController.addNewUser has Errors");
-			mav.setViewName("addUser");
-			logger.info("    -> @UserController.addNewUser serving addUser.jsp again");
+			logger.info("    -> @UserController.addNewEmployee has Errors");
+			mav.setViewName("addEmployee");
+			logger.info("    -> @UserController.addNewEmployee serving addUser.jsp again");
 		}
 		else {
-				mav.setViewName("addedNewUser");
-				logger.info("    -> @UserController.addNewUser adding to table using the UserSvc(userServices)");
-				logger.info("    -> @UserController.addNewUser user has the values: " + employee.toString());
+				mav.setViewName("addedNewEmployee");
+				logger.info("    -> @UserController.addNewEmployee adding to table using the UserSvc(userServices)");
+				logger.info("    -> @UserController.addNewEmployee user has the values: " + employee.toString());
 				employeeServices.addEmployee(employee);
-				logger.info("    -> @UserController.addNewUser adding to table using the UserSvc(userServices) Completed");
+				logger.info("    -> @UserController.addNewEmployee adding to table using the UserSvc(userServices) Completed");
 				Details details = new Details();
 				details.setEmployee(employee);
 				detailsServices.addDetails(details);
-				logger.info("    -> @UserController.addNewUser printing Details: " + details.toString());
-				logger.info("    -> @UserController.addNewUser adding to table Completed.");
+				logger.info("    -> @UserController.addNewEmployee printing Details: " + details.toString());
+				logger.info("    -> @UserController.addNewEmployee adding to table Completed.");
 		}
 		return mav;
 	}
 	
-	@RequestMapping(value="/delete/{userId}")
-	public String deleteEmployeeByEmployeeId(@PathVariable("userId") int employeeId) {
-		logger.info("    -> @UserController.deleteUserByUserId.");
+	@RequestMapping(value="/delete/{employeeId}")
+	public String deleteEmployeeByEmployeeId(@PathVariable("employeeId") int employeeId) {
+		logger.info("    -> @UserController.deleteEmployeeByEmployeeId.");
 		boolean success = false;
 		success = employeeServices.deleteEmployeeByEmployeeId(employeeId);
 		if (!success) throw new DataAccessException("Unable to delete User with User Id: " + employeeId) {
 			private static final long serialVersionUID = 1L;}; 
-		logger.info("    -> @UserController.deleteUserByUserId Completed.");
-		return "listAllUsers";
+		logger.info("    -> @UserController.deleteEmployeeByEmployeeId Completed.");
+		return "listAllEmployees";
 	}
 
 }

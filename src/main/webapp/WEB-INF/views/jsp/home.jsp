@@ -8,21 +8,21 @@
 		<div class="row">
 			<div class="col-md-6">
 				<p>
-					<a href="showUserForm" class="btn btn-primary btn-lg btn-block">Add a new User</a>
+					<a href="showEmployeeForm" class="btn btn-primary btn-lg btn-block">Add a new User</a>
 				</p>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-md-6">
 				<p>
-					<a href="listAllUsers" class="btn btn-success btn-lg btn-block">List All Users</a>
+					<a href="listAllEmployees" class="btn btn-success btn-lg btn-block">List All Users</a>
 				</p>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-md-6">
 				<p>
-					<a href="listAllUserDetails" class="btn btn-success btn-lg btn-block">List All User Details</a>
+					<a href="listAllEmployeeDetails" class="btn btn-success btn-lg btn-block">List All User Details</a>
 				</p>
 			</div>
 		</div>

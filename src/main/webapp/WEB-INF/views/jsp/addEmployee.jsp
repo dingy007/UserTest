@@ -5,7 +5,7 @@
 	<div class="container"> -->
 		<h1>Add a New User:</h1>
 
-		<form:form action="addNewUser" method="POST" modelAttribute="employee">
+		<form:form action="addNewEmployee" method="POST" modelAttribute="employee">
 		<form:errors/>
 			<table>
 				<tr>
