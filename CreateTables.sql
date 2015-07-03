@@ -145,43 +145,41 @@ VALUES('dinesh','letmein',1);
 -- ----------------------------------------------------------------------------------------------------
 -- ----------------------------------------------------------------------------------------------------
 -- ----------------------------------------------------------------------------------------------------
-
--- MySQL Workbench Forward Engineering
-
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
 -- -----------------------------------------------------
--- Schema hibernatespringwebproject
+-- Schema springwebmvcprj
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `hibernatespringwebproject` DEFAULT CHARACTER SET utf8 ;
-USE `hibernatespringwebproject` ;
+CREATE SCHEMA IF NOT EXISTS `springwebmvcprj` DEFAULT CHARACTER SET utf8 ;
+USE `springwebmvcprj` ;
 
 -- -----------------------------------------------------
--- Table `hibernatespringwebproject`.`users`
+-- Table `springwebmvcprj`.`users`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `hibernatespringwebproject`.`users` (
+CREATE TABLE IF NOT EXISTS `springwebmvcprj`.`users` (
   `USER_ID` INT(10) NOT NULL AUTO_INCREMENT,
   `username` VARCHAR(60) NOT NULL,
   `password` VARCHAR(80) NULL DEFAULT NULL,
   `enabled` TINYINT(4) NULL DEFAULT NULL,
-  PRIMARY KEY (`USER_ID`))
+  PRIMARY KEY (`USER_ID`),
+  UNIQUE (username))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------
--- Table `hibernatespringwebproject`.`authorities`
+-- Table `springwebmvcprj`.`authorities`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `hibernatespringwebproject`.`authorities` (
+CREATE TABLE IF NOT EXISTS `springwebmvcprj`.`authorities` (
   `authoritiesId` INT(11) NOT NULL AUTO_INCREMENT,
   `authority` VARCHAR(45) NULL DEFAULT NULL,
   `usernameFK` VARCHAR(60) NULL,
   PRIMARY KEY (`authoritiesId`),
   CONSTRAINT `usernameFkey`
-    FOREIGN KEY (`authoritiesId`)
-    REFERENCES `hibernatespringwebproject`.`users` (`USER_ID`)
+    FOREIGN KEY (`usernameFK`)
+    REFERENCES `springwebmvcprj`.`users` (`username`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -189,9 +187,9 @@ DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------
--- Table `hibernatespringwebproject`.`employee`
+-- Table `springwebmvcprj`.`employee`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `hibernatespringwebproject`.`employee` (
+CREATE TABLE IF NOT EXISTS `springwebmvcprj`.`employee` (
   `EmployeeId` INT(11) NOT NULL AUTO_INCREMENT,
   `badgeId` VARCHAR(255) NOT NULL,
   `fname` VARCHAR(255) NOT NULL,
@@ -202,9 +200,9 @@ DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------
--- Table `hibernatespringwebproject`.`employeedetails`
+-- Table `springwebmvcprj`.`employeedetails`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `hibernatespringwebproject`.`employeedetails` (
+CREATE TABLE IF NOT EXISTS `springwebmvcprj`.`employeedetails` (
   `detailsId` INT(11) NOT NULL AUTO_INCREMENT,
   `User_Email` VARCHAR(255) NULL DEFAULT NULL,
   `EmployeeFk` INT(11) NULL DEFAULT NULL,
@@ -212,7 +210,7 @@ CREATE TABLE IF NOT EXISTS `hibernatespringwebproject`.`employeedetails` (
   INDEX `FK_uglctohhwo0caxndtt6in82g` (`EmployeeFk` ASC),
   CONSTRAINT `FK_uglctohhwo0caxndtt6in82g`
     FOREIGN KEY (`EmployeeFk`)
-    REFERENCES `hibernatespringwebproject`.`employee` (`EmployeeId`))
+    REFERENCES `springwebmvcprj`.`employee` (`EmployeeId`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1;
 
@@ -221,3 +219,11 @@ SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
+
+INSERT INTO `springwebmvcprj`.`users`
+(`username`,`password`,`enabled`)
+VALUES('dinesh','letmein',1);
+
+INSERT INTO `springwebmvcprj`.`authorities`
+(`authority`,`usernameFK`)
+VALUES('role_admin','dinesh');
