@@ -1,7 +1,7 @@
 <%@ include file="header_footer/header.jsp" %>
 <h1>Listing All Users:</h1>
 	<c:if test="${! empty employeesList}">
-		<table>
+		<table  class="table table-striped">
 			<tr>
 				<th>User Id</th>
 				<th>First Name</th>
@@ -11,7 +11,7 @@
 			</tr>
 			<c:forEach items="${employeesList}" var="employee">
 				<tr>
-					<td>${employee.userId}</td>
+					<td>${employee.employeeId}</td>
 					<td>${employee.fname}</td>
 					<td>${employee.lname }</td>
 					<td>${employee.badgeId}</td>

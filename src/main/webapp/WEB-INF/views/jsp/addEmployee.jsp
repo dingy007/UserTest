@@ -19,8 +19,7 @@
 					<td><form:errors path="lname" cssClass="fieldErrors" /></td>
 				</tr>
 				<tr>
-					<td colspan="2"><input type="submit"
-						value="<spring:message code='label.add_user'/>" name="btnSubmit" />
+					<td colspan="2"><input type="submit" value="<spring:message code='label.add_user'/>" name="btnSubmit" />
 						<input type="reset" value="<spring:message code='label.cancel'/>"name="btnCancel" /></td>
 				</tr>
 			</table>

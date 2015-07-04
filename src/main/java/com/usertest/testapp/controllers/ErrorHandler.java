@@ -20,6 +20,7 @@ public class ErrorHandler {
 	public String handleDataAccessExceptions(Exception ex) {
 		logger.info("    -> @ErrorHandler.handleDataAccessExceptions");
 		logger.info("    -> @ErrorHandler.handleDataAccessExceptions serving errors.jsp");
+		logger.error(ex.getMessage());
 		return "errors";
 	}
 	
@@ -27,6 +28,7 @@ public class ErrorHandler {
 	public String handleGenericExceptions(Exception ex) {
 		logger.info("    -> @ErrorHandler.handleGenericExceptions");
 		logger.info("    -> @ErrorHandler.handleGenericExceptions serving errors.jsp");
+		logger.error(ex.getMessage());
 		return "errors";
 	}
 }

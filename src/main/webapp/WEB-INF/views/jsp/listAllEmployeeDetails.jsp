@@ -1,7 +1,7 @@
 <%@ include file="header_footer/header.jsp" %>
 <h1>My Contact List</h1>
 	<c:if test="${! empty quoteList}">
-		<table>
+		<table  class="table table-striped">
 			<tr>
 				<th>Id</th>
 				<th>Company Name</th>

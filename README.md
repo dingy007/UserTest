@@ -32,5 +32,20 @@ Notes on Spring:
 <ul>
 	<li>Use <b>#{}</b> to evaluate Spring Expression Language.</li>
 	<li>Can be used to get a method or property of another bean eg. &lt;property name="personality" value="#{MyProperties.getPersonality()}">&lt;/property></li>
-	<li><b>?. operator will only invoke the succeeding code, if the preceeding code is not null<b></li>
+	<li><b>?. operator will only invoke the succeeding code, if the preceeding code is not null</b></li>
+</ul>
+
+# JSP Tricks:
+<ul>
+	<li>Getting the Application's context path:</li>
+		<ul>
+			<li>Using JSTL 'c' tag: </li>
+			<ul>
+				<li>Eg. &lt;p> &lt;a href="&lt;c:url value="/toDestination"/>">Click Here!&lt;/a></li>
+			</ul>
+			<li>Using Spring's Expression language (SPEL): </li>
+			<ul>
+				<li>Eg. "${pageContext.request.contextPath}/login"</li>
+			</ul>
+		</ul>
 </ul>

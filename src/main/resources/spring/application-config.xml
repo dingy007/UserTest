@@ -23,12 +23,14 @@
 	</bean>
 	
 	<bean id="messageSource"
-		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource"
+		primary="false">
 		<property name="basename" value="classpath:messages"></property>
 		<property name="defaultEncoding" value="UTF-8"></property>
+		
 	</bean>
-	
-	
+
+
 	<mvc:annotation-driven></mvc:annotation-driven>
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->

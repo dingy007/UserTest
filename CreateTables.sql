@@ -162,7 +162,8 @@ CREATE TABLE IF NOT EXISTS `springwebmvcprj`.`users` (
   `USER_ID` INT(10) NOT NULL AUTO_INCREMENT,
   `username` VARCHAR(60) NOT NULL,
   `password` VARCHAR(80) NULL DEFAULT NULL,
-  `enabled` TINYINT(4) NULL DEFAULT NULL,
+  `enabled` BOOL NULL DEFAULT NULL,
+  `email` VARCHAR(80) NULL DEFAULT NULL,
   PRIMARY KEY (`USER_ID`),
   UNIQUE (username))
 ENGINE = InnoDB
@@ -222,8 +223,14 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 INSERT INTO `springwebmvcprj`.`users`
 (`username`,`password`,`enabled`)
-VALUES('dinesh','letmein',1);
+VALUES('dinesh','letmein',1,'myemailadd@mymail.com');
 
 INSERT INTO `springwebmvcprj`.`authorities`
 (`authority`,`usernameFK`)
 VALUES('role_admin','dinesh');
+
+-- DROP TABLES SQL :(
+drop table authorities;
+drop table employee;
+drop table employeedetails;
+drop table users;

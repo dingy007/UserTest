@@ -19,7 +19,7 @@ import org.slf4j.LoggerFactory;
 
 
 @Entity
-@Table(name="EmployeeDetails")
+@Table(name="employeedetails")
 public class Details implements Serializable{
 	@Transient
 	Logger logger = LoggerFactory.getLogger(Details.class);

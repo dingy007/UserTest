@@ -29,20 +29,23 @@
 				<table>
 					<tbody>
 						<tr>
-							<td>User Name:</td><td><input type="text" name="username" value=""></td>
+							<td>User Name:</td>
+							<td><input type="text" name="username"></td>
 						</tr>
 						<tr>
-							<td>Password:</td><td><input type="password" name="password"></td>
+							<td>Password:</td>
+							<td><input type="password" name="password"></td>
 						</tr>
 						<tr>
-							<td colspan="2"><input name="submit" type="submit" value="Login"></td>
+							<td><input name="submit" type="submit" value="Login"></td>
+							<td><input name="btnCancel" type="reset"></td>
 						</tr>
 					   
 					</tbody>
 				</table>
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 			</form>
-			<p> <a href="<c:url value="/newaccount"/>">Create new account</a> 
+			<p> <a href="<c:url value="/newAccount"/>">Create new account</a> 
 			</p>
 		</div>
 	</body>

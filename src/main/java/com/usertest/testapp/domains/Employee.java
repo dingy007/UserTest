@@ -14,11 +14,12 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.NotBlank;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Entity
-@Table(name="Employee")
+@Table(name="employee")
 public class Employee implements Serializable{
 	
 	/**
@@ -33,28 +34,16 @@ public class Employee implements Serializable{
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int employeeId;
 	@Column
-	@NotNull
+	@NotBlank
 	private String fname;
 	@Column
-	@NotNull
+	@NotBlank
 	private String lname;
 	@Column
 	private String badgeId;
 	@OneToOne(mappedBy="employee",targetEntity=Details.class, orphanRemoval=true, fetch=FetchType.LAZY, optional=true, cascade=CascadeType.ALL)
 	private Details details;
-	
-	public Logger getLogger() {
-		return logger;
-	}
-	public void setLogger(Logger logger) {
-		this.logger = logger;
-	}
-	public int getUserId() {
-		return employeeId;
-	}
-	public void setUserId(int userId) {
-		this.employeeId = userId;
-	}
+
 	public String getFname() {
 		return fname;
 	}
@@ -83,6 +72,12 @@ public class Employee implements Serializable{
 	}
 	public void setDetails(Details details) {
 		this.details = details;
+	}
+	public int getEmployeeId() {
+		return employeeId;
+	}
+	public void setEmployeeId(int employeeId) {
+		this.employeeId = employeeId;
 	}
 
 }
