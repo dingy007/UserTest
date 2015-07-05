@@ -1,10 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:security="http://www.springframework.org/schema/security"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
 		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
-
 
 	<security:authentication-manager>
 		<security:authentication-provider>
@@ -29,13 +27,16 @@
 		<security:intercept-url pattern="/resources/**" access="permitAll" />
 		<security:intercept-url pattern="/css/**" access="permitAll" />
 		<security:intercept-url pattern="/js/**" access="permitAll" />
+		<security:intercept-url pattern="/jquery/**" access="permitAll" />
 		<security:intercept-url pattern="/fonts/**" access="permitAll" />
 		<security:intercept-url pattern="/login" access="permitAll" />
+		<security:intercept-url pattern="/logout" access="permitAll" />
+		<security:intercept-url pattern="/j_spring_security_logout" access="permitAll" />
 		<security:intercept-url pattern="/newaccount" access="permitAll" />
 		<security:intercept-url pattern="/createAccount" access="permitAll" />
 		<security:intercept-url pattern="/listAllEmployees" access="permitAll" />
 		<security:intercept-url pattern="/listAllEmployeeDetails" access="permitAll" />
-		
+
 		<security:intercept-url pattern="/addNewEmployee" access="isAuthenticated()" />
 		<security:intercept-url pattern="/showEmployeeForm" access="isAuthenticated()" />
 
@@ -44,5 +45,7 @@
 		<security:intercept-url pattern="/**" access="denyAll" />
 		<!-- Adding a failure url-parameter that returns true if authentication fails, but the form is the same '/login' -->
 		<security:form-login login-page="/login" authentication-failure-url="/login?error=true" />
+		<security:logout logout-success-url="/logout"
+			invalidate-session="true" />
 	</security:http>
 </beans>

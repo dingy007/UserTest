@@ -21,6 +21,7 @@
       <param-name>contextConfigLocation</param-name>
       <param-value>
       	    classpath:spring/application-config.xml
+        	classpath:spring/security-context.xml
       </param-value>
     </init-param>
     <load-on-startup>1</load-on-startup>

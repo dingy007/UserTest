@@ -20,7 +20,7 @@
 			<br>
 			<c:if test="${param.error != null }">
 				<p>
-					<span class="error">Login failed. Check your user-name & password are correct.</span>
+					<span class="error">Login failed. Check your user-name &amp; password are correct.</span>
 				</p>
 			</c:if>
 			<!-- <form name="f" action="/usertest/login" method="POST"> -->

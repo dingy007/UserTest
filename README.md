@@ -48,4 +48,8 @@ Notes on Spring:
 				<li>Eg. "${pageContext.request.contextPath}/login"</li>
 			</ul>
 		</ul>
+	<li>Enabling CSRF (Cross-Site Request Forgery) Protection in Spring Forms</li>
+		<ul>
+			<li>&lt;input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/></li>
+		</ul>
 </ul>

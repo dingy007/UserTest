@@ -32,6 +32,13 @@ public class LoginController {
 		return "login";
 	}
 	
+	@RequestMapping("/logout")
+	public String showLoggedOut() {
+		logger.info("    -> @LoginController.showLoggedOut");
+		logger.info("    -> @LoginController.showLoggedOut serving loggedout.jsp");
+		return "loggedout";
+	}
+	
 	@RequestMapping("/newAccount")
 	public String showNewAccount(Model model) {
 		logger.info("    -> @LoginController.showNewAccount");

@@ -26,4 +26,16 @@
 				</p>
 			</div>
 		</div>
-<%@ include file="header_footer/footer.jsp" %>
+		
+		<%-- <p><a href="<c:url value='/j_spring_security_logout' />">Log out</a></p> --%>
+		<%-- <p><a href="<c:url value='/logout' />">Log out</a></p> --%>
+		
+		<form method="post" action="logout">
+			<%-- <p><a href="<c:url value='/logout' />">Log out</a></p> --%>
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+			<button formaction="logout" type="submit" name="your_name" value="your_value">Logout</button>
+			<!-- onclick="document.forms[0].submit();return false;" -->
+			<a href="#" onclick="document.forms[0].submit();return false;">Logout</a>
+		</form>
+		
+		<%@ include file="header_footer/footer.jsp" %>

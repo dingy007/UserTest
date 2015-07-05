@@ -36,7 +36,9 @@
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	
 	<mvc:resources mapping="/resources/**" location="/resources/" />
-	<mvc:resources location="/WEB-INF/views/jsp/css/" mapping="/css/**" />
+	<mvc:resources location="/WEB-INF/views/jsp/css/" mapping="/css/**">
+		
+	</mvc:resources>
 	<mvc:resources location="/WEB-INF/views/jsp/js/" mapping="/js/**" />
 	<mvc:resources location="/WEB-INF/views/jsp/fonts/" mapping="/fonts/**" />
 
@@ -69,4 +71,7 @@
 	<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
+	<mvc:resources location="/WEB-INF/views/jsp/jquery/"
+		mapping="/jquery/**">
+	</mvc:resources>
 </beans>

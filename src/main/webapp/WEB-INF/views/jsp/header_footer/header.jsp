@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page session="false"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
@@ -11,12 +12,25 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link type="text/css" href="css/bootstrap.css" rel="stylesheet" />
 <!-- <script type="text/javascript" src="/jquery/jquery-1.11.3.min.js"/></script> -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<%-- <script type="text/javascript" src="${pageContext.request.contextPath}/views/jsp/jquery/jquery-1.11.1.min.js"></script> --%>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
+<script type="text/javascript" src="jquery/jquery-1.11.1.min.js"></script>
 <%-- <script type="text/javascript" src="${pageContext.request.contextPath}/views/jsp/js/bootstrap.min.js"/></script> --%>
 <script type="text/javascript" src="js/bootstrap.min.js"/></script>
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<!-- <style>
+	.error {
+	 color: #ff0000;
+	 background-color: #ffEEEE;
+	 border: 3px solid #ff0000;
+	  padding: 8px;
+	 margin: 16px; 
+	}
+	
+	.valid {
+	color: green;
+	}
+</style> -->
 <title>Spring - Hibernate Integration - Quotation & Invoice App</title>
 </head>
 <body>
