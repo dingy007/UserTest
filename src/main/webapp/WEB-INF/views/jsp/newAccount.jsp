@@ -50,15 +50,15 @@ function checkPasswordMatch() {
 	if ((password.length < 3) || (confirmpass.length < 3)) {
 		return;
 	}
-	if (password == confirmpass){
+	if (password != confirmpass){
 		$("#matchpass").text("<fmt:message key='UnmatchedPassword.user.password'/>");
-		$("#matchpass").addClass("valid");
+		$("#matchpass").removeClass("valid");
 		$("#matchpass").addClass("error");
 	}
 	else {
-		$("#matchpass").text("<fmt:message key=\\"MatchedPassword.user.password\\"/>");
-		$("#matchpass").removeClass("valid");
-		$("#matchpass").addClass("error");
+		$("#matchpass").text("<fmt:message key='MatchedPassword.user.password'/>");
+		$("#matchpass").addClass("valid");
+		$("#matchpass").removeClass("error");
 	}
 	//alert(password + ":" + confirmpass);
 }

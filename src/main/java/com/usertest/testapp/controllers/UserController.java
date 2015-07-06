@@ -67,7 +67,7 @@ public class UserController {
 	@RequestMapping(value="/listAllEmployeeDetails",method=RequestMethod.GET)
 	public String showListAllUserDetails() {
 		logger.info("    -> @UserController.listAllEmployeeDetails");
-		logger.info("    -> @UserController.listAllEmployeeDetails serving listAllEmployeeDetails.jsp");
+		logger.info("    -> @UserController.listAllEmployeeDetails completed serving listAllEmployeeDetails.jsp");
 
 		return "listAllEmployeeDetails";
 	}
@@ -90,7 +90,7 @@ public class UserController {
 				details.setEmployee(employee);
 				detailsServices.addDetails(details);
 				logger.info("    -> @UserController.addNewEmployee printing Details: " + details.toString());
-				logger.info("    -> @UserController.addNewEmployee adding to table Completed.");
+				logger.info("    -> @UserController.addNewEmployee adding to table Completed, serving addedNewEmployee.jsp.");
 		}
 		return mav;
 	}
@@ -102,8 +102,15 @@ public class UserController {
 		success = employeeServices.deleteEmployeeByEmployeeId(employeeId);
 		if (!success) throw new DataAccessException("Unable to delete User with User Id: " + employeeId) {
 			private static final long serialVersionUID = 1L;}; 
-		logger.info("    -> @UserController.deleteEmployeeByEmployeeId Completed.");
+		logger.info("    -> @UserController.deleteEmployeeByEmployeeId Completed serving listAllEmployees.jsp");
 		return "listAllEmployees";
+	}
+	
+	@RequestMapping(value="/admin")
+	public String showAdminPage() {
+		logger.info("    -> @UserController.showAdminPage.");
+		logger.info("    -> @UserController.showAdminPage completed serving admin.jsp");
+		return "admin";
 	}
 
 }

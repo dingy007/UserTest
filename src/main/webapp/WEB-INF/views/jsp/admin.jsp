@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Authorized users area/title>
+<title>Authorized users area</title>
 </head>
 <body>
 <h3>Authorized users area.</h3>
