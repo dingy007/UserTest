@@ -222,12 +222,12 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 
 INSERT INTO `springwebmvcprj`.`users`
-(`username`,`password`,`enabled`)
+(`username`,`password`,`enabled`,`email`)
 VALUES('dinesh','letmein',1,'myemailadd@mymail.com');
 
 INSERT INTO `springwebmvcprj`.`authorities`
 (`authority`,`usernameFK`)
-VALUES('role_admin','dinesh');
+VALUES('ROLE_ADMIN','dinesh');
 
 -- DROP TABLES SQL :(
 drop table authorities;

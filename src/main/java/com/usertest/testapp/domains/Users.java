@@ -38,7 +38,7 @@ public class Users implements Serializable{
 	@Pattern(regexp="^\\S+$", message="Password cannot have space.")
 	private String password;
 	@Column(name="enabled", columnDefinition="bool default true")
-	private boolean enabled = false;
+	private boolean enabled = true;
 	@Column(name="email")
 	@NotBlank(message="Email cannot be blank.")
 	@Email(message="Please re-enter the email.")

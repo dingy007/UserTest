@@ -28,10 +28,9 @@ public class Usersdao {
 
 	public void addUser(Users user, Authorities authorities) {
 		logger.info("->		@Usersdao.addUser");
-		sessionFactory.getCurrentSession()
-			.save(user);
-		sessionFactory.getCurrentSession()
-			.save(authorities);
+		sessionFactory.getCurrentSession().save(authorities);
+		sessionFactory.getCurrentSession().save(user);
+
 		logger.info("->		@Usersdao.addUser Completed");
 	}
 /*

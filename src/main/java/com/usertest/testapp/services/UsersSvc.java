@@ -25,7 +25,7 @@ public class UsersSvc {
 	public void addUser(Users user) {
 		logger.info("->		@UsersSvc.addUser");
 		user.setEnabled(true);
-		Authorities authority = new Authorities("admin", user);
+		Authorities authority = new Authorities("ROLE_ADMIN", user);
 		usersDao.addUser(user, authority);
 		logger.info("->		@UsersSvc.addUser Completed");
 	}

@@ -6,20 +6,20 @@
 
 	<security:authentication-manager>
 		<security:authentication-provider>
-			<!-- 		
-			<security:user-service>
-				<security:user name="user1" authorities="admin"
-					password="user1" />
-				<security:user name="user2" authorities="admin"
-					password="user2" />
+<!-- 			<security:user-service>
+				<security:user name="user1" authorities="ROLE_ADMIN" password="user1" />
+				<security:user name="user2" authorities="ADMIN" password="user2" />
 			</security:user-service>
 			 -->
+			<!-- users-by-username-query="select username, password, enabled from users where username=?" -->
 			<security:jdbc-user-service data-source-ref="dataSource"
-				users-by-username-query="select username, password, enabled from users where username=?"
-				authorities-by-username-query="select us.username, ur.authority from users us, authorities ur where us.username = ur.usernameFK and us.username =?  "/>
+				users-by-username-query="select username,password,enabled from users where username = ?"
+				authorities-by-username-query="select us.username, ur.authority from users us, authorities ur where us.username = ur.usernameFK and username =?" />
 		</security:authentication-provider>  
 	</security:authentication-manager>
 
+	<security:debug/>
+	
 	<security:http use-expressions="true">
 		<!-- Spring will walk down this list, always ensure a catch-all /** at the bottom -->
 		<security:intercept-url pattern="/" access="permitAll" />
@@ -31,21 +31,22 @@
 		<security:intercept-url pattern="/fonts/**" access="permitAll" />
 		<security:intercept-url pattern="/login" access="permitAll" />
 		<security:intercept-url pattern="/logout" access="permitAll" />
-		<security:intercept-url pattern="/j_spring_security_logout" access="permitAll" />
 		<security:intercept-url pattern="/newaccount" access="permitAll" />
 		<security:intercept-url pattern="/createAccount" access="permitAll" />
 		<security:intercept-url pattern="/listAllEmployees" access="permitAll" />
 		<security:intercept-url pattern="/listAllEmployeeDetails" access="permitAll" />
 
-		<security:intercept-url pattern="/admin" access="hasRole('admin')" /> <!-- can use Spring Security Patterns -->
+
 		<security:intercept-url pattern="/addNewEmployee" access="isAuthenticated()" />
 		<security:intercept-url pattern="/showEmployeeForm" access="isAuthenticated()" />
-
+		<security:intercept-url pattern="/admin" access="hasRole('ADMIN')" /> <!-- can use Spring Security Patterns -->
 
 		
 		<security:intercept-url pattern="/**" access="denyAll" />
 		<!-- Adding a failure url-parameter that returns true if authentication fails, but the form is the same '/login' -->
-		<security:form-login login-page="/login" authentication-failure-url="/login?error=true" />
+		<security:form-login login-page="/login"
+			authentication-failure-url="/login?error=true"
+			username-parameter="username" password-parameter="password" />
 		<security:logout logout-success-url="/logout"
 			invalidate-session="true" />
 	</security:http>
