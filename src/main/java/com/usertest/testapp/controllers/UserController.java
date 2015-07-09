@@ -103,7 +103,7 @@ public class UserController {
 		if (!success) throw new DataAccessException("Unable to delete User with User Id: " + employeeId) {
 			private static final long serialVersionUID = 1L;}; 
 		logger.info("    -> @UserController.deleteEmployeeByEmployeeId Completed serving listAllEmployees.jsp");
-		return "listAllEmployees";
+		return "redirect:/listAllEmployees";
 	}
 	
 	@RequestMapping(value="/admin")

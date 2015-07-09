@@ -12,9 +12,16 @@
 			 padding: 8px;
 			 margin: 16px;
 			}
+			td {
+				padding: 5px;
+			    vertical-align: center;
+			}
+			.table_buttons {
+				padding: 15px;
+			}
 		</style>
 	</head>
-	<body onload="document.f.username.focus();">
+	<body onload="document.f.username.focus();" >
 		<div class="container">
 			<h3>Login with Username and Password</h3>
 			<br>
@@ -24,7 +31,7 @@
 				</p>
 			</c:if>
 			<!-- <form name="f" action="/usertest/login" method="POST"> -->
-			<br><br>
+			<br>
 			<form name="f" action="${pageContext.request.contextPath}/login" method="POST"> 
 				<table>
 					<tbody>
@@ -32,19 +39,22 @@
 							<td>User Name:</td>
 							<td><input type="text" name="username"></td>
 						</tr>
+						
 						<tr>
 							<td>Password:</td>
 							<td><input type="password" name="password"></td>
 						</tr>
+						
 						<tr>
-							<td><input name="submit" type="submit" value="Login"></td>
-							<td><input name="btnCancel" type="reset"></td>
+							<td class="table_buttons"><input name="submit" type="submit" value="Login"></td>
+							<td class="table_buttons"><input name="btnCancel" type="reset"></td>
 						</tr>
 					   
 					</tbody>
 				</table>
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 			</form>
+			<br>
 			<p> <a href="<c:url value="/newAccount"/>">Create new account</a> 
 			</p>
 		</div>

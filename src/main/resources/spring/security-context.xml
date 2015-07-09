@@ -40,6 +40,7 @@
 		<security:intercept-url pattern="/addNewEmployee" access="isAuthenticated()" />
 		<security:intercept-url pattern="/showEmployeeForm" access="isAuthenticated()" />
 		<security:intercept-url pattern="/admin" access="hasRole('ADMIN')" /> <!-- can use Spring Security Patterns -->
+		<security:intercept-url pattern="/delete/**" access="hasRole('ADMIN')" /> <!-- can use Spring Security Patterns -->
 
 		
 		<security:intercept-url pattern="/**" access="denyAll" />
