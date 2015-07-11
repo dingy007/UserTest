@@ -39,6 +39,13 @@ public class LoginController {
 		return "loggedout";
 	}
 	
+	@RequestMapping("/denied")
+	public String showAccessDenied() {
+		logger.info("    -> @LoginController.showAccessDenied");
+		logger.info("    -> @LoginController.showAccessDenied serving denied.jsp");
+		return "denied";
+	}
+	
 	@RequestMapping("/newAccount")
 	public String showNewAccount(Model model) {
 		logger.info("    -> @LoginController.showNewAccount");

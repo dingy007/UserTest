@@ -80,13 +80,13 @@ $(document).ready(onLoad);
 	</tr>
 	<tr>
 		<td>Password: </td>
-		<td><form:input path="password" id="password" name="password" type="text" /><br/></td>
+		<td><form:input path="password" id="password" name="password" type="password" /><br/></td>
 		<td><div class="error"><form:errors path="password"></form:errors></div></td>
 		
 	</tr>
 	<tr>
 		<td>Confirm Password: </td>
-		<td><input class="control" id="confirmpass" name="confirmpass" type="text" /><br/></td>
+		<td><input class="control" id="confirmpass" name="confirmpass" type="password" /><br/></td>
 		<td><div id="matchpass"></div></td>
 	</tr>		
 	<tr>

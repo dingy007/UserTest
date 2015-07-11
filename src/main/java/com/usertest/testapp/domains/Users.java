@@ -34,7 +34,7 @@ public class Users implements Serializable{
 	private String username;
 	@Column(name="password")
 	@NotBlank(message="Password cannot be blank.")
-	@Size(min=8, max=15, message="Password has to be between 6 and 15 characters long.")
+	@Size(min=8, max=100, message="Password has to be between 6 and 100 characters long.")
 	@Pattern(regexp="^\\S+$", message="Password cannot have space.")
 	private String password;
 	@Column(name="enabled", columnDefinition="bool default true")

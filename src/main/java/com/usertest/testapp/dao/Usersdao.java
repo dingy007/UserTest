@@ -10,6 +10,7 @@ import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import scala.annotation.meta.getter;
@@ -18,16 +19,22 @@ import com.usertest.testapp.domains.Authorities;
 import com.usertest.testapp.domains.Employee;
 import com.usertest.testapp.domains.Users;
 
+
+
 @Repository("usersDao")
 public class Usersdao {
 
 	Logger logger = LoggerFactory.getLogger(Usersdao.class);
 
 	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
+	@Autowired
 	private SessionFactory sessionFactory;
 
 	public void addUser(Users user, Authorities authorities) {
 		logger.info("->		@Usersdao.addUser");
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		sessionFactory.getCurrentSession().save(authorities);
 		sessionFactory.getCurrentSession().save(user);
 

@@ -12,14 +12,23 @@
 			</security:user-service>
 			 -->
 			<!-- users-by-username-query="select username, password, enabled from users where username=?" -->
+			<!-- Since MySQL by  default is not case sensitive, hence we have to use 'binary' in front of the query object to ensure case sensitivity. -->
 			<security:jdbc-user-service data-source-ref="dataSource"
-				users-by-username-query="select username,password,enabled from users where username = ?"
-				authorities-by-username-query="select us.username, ur.authority from users us, authorities ur where us.username = ur.usernameFK and username =?" />
-		</security:authentication-provider>  
+				users-by-username-query="select username,password,enabled from users where binary username = ?"
+				authorities-by-username-query="select us.username, ur.authority from users us, authorities ur where binary us.username = ur.usernameFK and username =?"
+				id="jdbcUserAuthService" />
+			<security:password-encoder ref="passwordEncoder"></security:password-encoder>
+		</security:authentication-provider>
 	</security:authentication-manager>
 
 	<security:debug/>
-	
+			<!-- This enables Access-control to methods -->
+	<!-- Important to protect the Service Layer methods -->
+	<!-- This (RoleVoter) requires user roles to begin with 'ROLES_' eg. 'ROLES_ADMIN','ROLES_USER' -->
+	<!-- Can be changed by creating a 'roleVoter' Bean and changing prefix to 'blank' -->
+	<security:global-method-security secured-annotations="enabled">
+	</security:global-method-security>
+
 	<security:http use-expressions="true">
 		<!-- Spring will walk down this list, always ensure a catch-all /** at the bottom -->
 		<security:intercept-url pattern="/" access="permitAll" />
@@ -35,7 +44,8 @@
 		<security:intercept-url pattern="/createAccount" access="permitAll" />
 		<security:intercept-url pattern="/listAllEmployees" access="permitAll" />
 		<security:intercept-url pattern="/listAllEmployeeDetails" access="permitAll" />
-
+		<security:intercept-url pattern="/listAllEmployeeDetails" access="permitAll" />
+		<security:intercept-url pattern="/denied" access="permitAll" />
 
 		<security:intercept-url pattern="/addNewEmployee" access="isAuthenticated()" />
 		<security:intercept-url pattern="/showEmployeeForm" access="isAuthenticated()" />
@@ -50,5 +60,13 @@
 			username-parameter="username" password-parameter="password" />
 		<security:logout logout-success-url="/logout"
 			invalidate-session="true" />
+		<security:access-denied-handler error-page="/denied" />
+		<security:remember-me key="employeeAppKey"
+			user-service-ref="jdbcUserAuthService" />
 	</security:http>
+	
+	<bean id="passwordEncoder"
+		class="org.springframework.security.crypto.password.StandardPasswordEncoder">
+		<!-- Can also use BCryptPasswordEncoder class -->
+	</bean>
 </beans>

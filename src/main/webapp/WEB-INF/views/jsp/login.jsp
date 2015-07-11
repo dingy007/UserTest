@@ -46,6 +46,11 @@
 						</tr>
 						
 						<tr>
+							<td>Remember Me </td>
+							<td><input type="checkbox" name="remember-me" checked="checked"></td>
+						</tr>
+						
+						<tr>
 							<td class="table_buttons"><input name="submit" type="submit" value="Login"></td>
 							<td class="table_buttons"><input name="btnCancel" type="reset"></td>
 						</tr>

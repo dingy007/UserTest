@@ -44,4 +44,7 @@
     <filter-name>springSecurityFilterChain</filter-name>
     <url-pattern>/*</url-pattern> <!-- Handle all the URLs -->
   </filter-mapping>
+  <session-config>
+  	<session-timeout>20</session-timeout>
+  </session-config>
 </web-app>

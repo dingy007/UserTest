@@ -36,24 +36,20 @@
 		
 		<sec:authorize access="!isAuthenticated()">
 			<p><a href="<c:url value='/login' />">Login</a></p>
-<%-- 			<form method="post" action="<c:url value='/login'></c:url>">
-				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-				<a href="#" onclick="document.forms[0].submit();return false;">Login</a>
-			</form> --%>
 		</sec:authorize>
 		<br>		
 		<sec:authorize access="isAuthenticated()">
 			<form method="post" action="logout">
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 				<!-- <button formaction="logout" type="submit" name="your_name" value="your_value">Logout</button> -->
-				<a href="#" onclick="document.forms[1].submit();return false;">Logout</a>
+				<a href="#" onclick="document.forms[0].submit();return false;">Logout</a>
 			</form>
 		</sec:authorize>
 		<br>
 		<sec:authorize access="hasRole('ADMIN')">
 			<form method="post" action="admin">
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-				<a href="#" onclick="document.forms[2].submit();return false;">Admin</a>
+				<a href="#" onclick="document.forms[1].submit();return false;">Admin</a>
 			</form>
 		</sec:authorize>
 

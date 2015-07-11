@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 
 import com.usertest.testapp.dao.Employeedao;
@@ -32,7 +33,11 @@ public class EmployeeSvc {
 		logger.info("->		@EmployeeSvc.addEmployee Completed");
 	}
 	
+	@Secured(value = { "ROLE_ADMIN" })
 	@Transactional
+	// Method level access control, ensures only 'ADMIN' has access to this method
+	// Ensure that the 'org.springframework.security.access.annotation.Secured' package is imported and not Transactions annotations.
+	
 	public List<Employee> listAllEmployees() {
 		logger.info("->		@EmployeeSvc.listAllEmployees");
 		List<Employee> employees = employeeDao.listAllEmployees();
