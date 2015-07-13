@@ -33,11 +33,13 @@
 		<!-- Spring will walk down this list, always ensure a catch-all /** at the bottom -->
 		<security:intercept-url pattern="/" access="permitAll" />
 		<security:intercept-url pattern="/home" access="permitAll" />
-		<security:intercept-url pattern="/resources/**" access="permitAll" />
-		<security:intercept-url pattern="/css/**" access="permitAll" />
-		<security:intercept-url pattern="/js/**" access="permitAll" />
+		<!-- <security:intercept-url pattern="/resources/public/**" access="permitAll" /> -->
+		<security:intercept-url pattern="/static/css/**" access="permitAll" />
+		<security:intercept-url pattern="/static/jquery/**" access="permitAll" />
+		<security:intercept-url pattern="/static/js/**" access="permitAll" />
+		<!-- <security:intercept-url pattern="/js/**" access="permitAll" />
 		<security:intercept-url pattern="/jquery/**" access="permitAll" />
-		<security:intercept-url pattern="/fonts/**" access="permitAll" />
+		<security:intercept-url pattern="/fonts/**" access="permitAll" /> -->
 		<security:intercept-url pattern="/login" access="permitAll" />
 		<security:intercept-url pattern="/logout" access="permitAll" />
 		<security:intercept-url pattern="/newaccount" access="permitAll" />

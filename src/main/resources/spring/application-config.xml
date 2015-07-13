@@ -17,11 +17,7 @@
 	<!-- This is where to find the @Controller among the POJO Source codes -->
 	<context:component-scan base-package="com.usertest.testapp" />
 
-	<bean
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/WEB-INF/views/jsp/" />
-		<property name="suffix" value=".jsp" />
-	</bean>
+
 	
 	<bean id="messageSource"
 		class="org.springframework.context.support.ReloadableResourceBundleMessageSource"
@@ -34,11 +30,14 @@
 
 	<mvc:annotation-driven></mvc:annotation-driven>
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+	<mvc:resources location="classpath*:resources/public/" mapping="/static/css/**" />
+	<!-- 
 	<mvc:resources location="/resources/" mapping="/resources/**" />
 	<mvc:resources location="/WEB-INF/views/jsp/css/" mapping="/css/**" />
 	<mvc:resources location="/WEB-INF/views/jsp/js/" mapping="/js/**" />
 	<mvc:resources location="/WEB-INF/views/jsp/fonts/" mapping="/fonts/**" />
 	<mvc:resources location="/WEB-INF/views/jsp/jquery/" mapping="/jquery/**"/>
+	 -->
 
 	<!-- Beans associated with Transactions, and Spring Data -->
 	<bean id="dataSource"
@@ -68,5 +67,21 @@
 	<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
-
+<!-- Required for Tiles View
+	<bean id="tilesViewResolver"
+		class="org.springframework.web.servlet.view.tiles3.TilesViewResolver">
+	</bean>
+ 	<bean id="tilesConfigurer"
+		class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+		<property name="definitions">
+			<list>
+				<value>/WEB-INF/layouts/default.xml</value>
+			</list>
+		</property>
+	</bean> -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/views/jsp/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
 </beans>

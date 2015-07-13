@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+	<definition name="default.base" template="/WEB-INF/templates/default.jsp">	
+		<put-attribute name="title" value="Application Default Tile"></put-attribute>
+		<put-attribute name="header" value="/WEB-INF/tiles/headerTile.jsp"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/tiles/contentTile.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/tiles/footerTile.jsp"></put-attribute>
+	</definition>
+	<definition name="home" extends="default.base">	
+		<put-attribute name="title" value="Application Homepage"></put-attribute>
+		<put-attribute name="header" value="/WEB-INF/tiles/headerTile.jsp"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/tiles/contentTile.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/tiles/footerTile.jsp"></put-attribute>
+	</definition>
+</tiles-definitions>
