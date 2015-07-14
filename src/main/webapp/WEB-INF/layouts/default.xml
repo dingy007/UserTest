@@ -42,4 +42,20 @@
 		<put-attribute name="title" value="Adding New Account"></put-attribute>
 		<put-attribute name="content" value="/WEB-INF/tiles/newAccount.jsp"></put-attribute>
 	</definition>
+	<definition name="denied" extends="default.base">	
+		<put-attribute name="title" value="Access Denied"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/tiles/denied.jsp"></put-attribute>
+	</definition>
+	<definition name="loggedout" extends="default.base">	
+		<put-attribute name="title" value="Succesfully Logged Out"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/tiles/loggedout.jsp"></put-attribute>
+	</definition>
+	<definition name="login" extends="default.base">	
+		<put-attribute name="title" value="Enter your Login details"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/tiles/login.jsp"></put-attribute>
+	</definition>
+	<definition name="errors" template="/WEB-INF/templates/basic.jsp">	
+		<put-attribute name="title" value="An Exception occured"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/tiles/errors.jsp"></put-attribute>
+	</definition>
 </tiles-definitions>

@@ -1,48 +1,51 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<h2>Add a new Account:</h2>
-<script type="text/javascript">
-
-function onLoad() {
-	$("#password").keyup(checkPasswordMatch);
-	$("#confirmpass").keyup(checkPasswordMatch);
-	$("#details").submit(canSubmit);
-}
-function canSubmit() {
-	var password = $("#password").val();
-	var confirmpass = $("#confirmpass").val();
-	
-	if(password != confirmpass) {
-		alert("Passwords do not match!")
-		return false;
-	}
-	else {
-		return true;
-	}
-}
-function checkPasswordMatch() {
-	var password = $("#password").val();
-	var confirmpass = $("#confirmpass").val();
-
-	if ((password.length < 3) || (confirmpass.length < 3)) {
-		return;
-	}
-	if (password != confirmpass){
-		$("#matchpass").text("<fmt:message key='UnmatchedPassword.user.password'/>");
-		$("#matchpass").removeClass("valid");
-		$("#matchpass").addClass("error");
-	}
-	else {
-		$("#matchpass").text("<fmt:message key='MatchedPassword.user.password'/>");
-		$("#matchpass").addClass("valid");
-		$("#matchpass").removeClass("error");
-	}
-}
-
-$(document).ready(onLoad);
-</script>
 <div class="container">
+	<h2>Add a new Account:</h2>
+	<script type="text/javascript">
+	
+	function onLoad() {
+		$("#password").keyup(checkPasswordMatch);
+		$("#confirmpass").keyup(checkPasswordMatch);
+		$("#details").submit(canSubmit);
+	}
+	function canSubmit() {
+		var password = $("#password").val();
+		var confirmpass = $("#confirmpass").val();
+		
+		if(password != confirmpass) {
+			alert("Passwords do not match!")
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
+	function checkPasswordMatch() {
+		var password = $("#password").val();
+		var confirmpass = $("#confirmpass").val();
+	
+		if ((password.length < 3) || (confirmpass.length < 3)) {
+			return;
+		}
+		if (password != confirmpass){
+			$("#matchpass").text("<fmt:message key='UnmatchedPassword.user.password'/>");
+			$("#matchpass").removeClass("valid");
+			$("#matchpass").addClass("error");
+		}
+		else {
+			$("#matchpass").text("<fmt:message key='MatchedPassword.user.password'/>");
+			$("#matchpass").addClass("valid");
+			$("#matchpass").removeClass("error");
+		}
+	}
+	
+	$(document).ready(onLoad);
+	</script>
+
 	<form:form method="post" id="details" action="${pageContext.request.contextPath}/createAccount" commandName="user">
 		<table class="formtable">
 			<tr>

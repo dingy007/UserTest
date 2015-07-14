@@ -29,7 +29,7 @@ public class Users implements Serializable{
 	private int USER_ID;
 	@Column(name="username",unique=true)
 	@NotBlank
-	@Size(min=1, max=20)
+	@Size(min=8, max=20)
 	@Pattern(regexp="^\\w{8,}$",message="Username can only consists, letters and the undescore character.")
 	private String username;
 	@Column(name="password")

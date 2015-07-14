@@ -6589,4 +6589,48 @@ div.content {
 	position: relative;
 	padding: 40px;
 }
+.error {
+	color: red;
+	border: medium;
+	font-size: small;
+	border-color: red;
+	padding-left: 15px;
+	padding-right: 15px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	border: hidden;
+}
+.valid {
+	color: green;
+	border: medium;
+	font-size: small;
+	border-color: green;
+	padding-left: 15px;
+	padding-right: 15px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	border: hidden;
+}
+.loginerror {
+ color: #ff0000;
+ background-color: #ffEEEE;
+ border: 3px solid #ff0000;
+ padding: 8px;
+ margin: 16px;
+}
+td {
+	padding: 5px;
+    vertical-align: center;
+}
+.table_buttons {
+	padding: 15px;
+}
+.footerStyle {
+	font-style: normal;
+	font-size: x-small;
+	direction:ltr;
+	right:  0;
+	position: absolute;
+}
+
 /*# sourceMappingURL=bootstrap.css.map */
