@@ -6581,4 +6581,12 @@ button.close {
     display: none !important;
   }
 }
+div.footer {
+	font-size: small;
+	color: gray;
+}
+div.content {
+	position: relative;
+	padding: 40px;
+}
 /*# sourceMappingURL=bootstrap.css.map */

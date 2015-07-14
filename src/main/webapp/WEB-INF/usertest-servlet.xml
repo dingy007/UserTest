@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+	
+	<!--  Enable Annotations in POJOs (JSR-250)-->
+	<context:annotation-config></context:annotation-config>
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<!-- This is where to find the @Controller among the POJO Source codes -->
+	<mvc:annotation-driven></mvc:annotation-driven>
+	<context:component-scan
+		base-package="com.usertest.testapp.controllers" />
+
+
+
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+	<mvc:resources location="/resources/public/" mapping="/static/**" cache-period="31556926"/>
+	<!-- 
+	<mvc:resources location="/resources/" mapping="/resources/**" />
+	<mvc:resources location="/WEB-INF/views/jsp/css/" mapping="/css/**" />
+	<mvc:resources location="/WEB-INF/views/jsp/js/" mapping="/js/**" />
+	<mvc:resources location="/WEB-INF/views/jsp/fonts/" mapping="/fonts/**" />
+	<mvc:resources location="/WEB-INF/views/jsp/jquery/" mapping="/jquery/**"/>
+	 -->
+	 
+	<bean id="messageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource"
+		primary="false">
+		<property name="basename" value="classpath:messages"></property>
+		<property name="defaultEncoding" value="UTF-8"></property>
+	</bean>
+
+	<!-- Tiles View Resolver -->
+	<!--
+	<bean id="tilesViewResolver"
+		class="org.springframework.web.servlet.view.tiles3.TilesViewResolver">
+	</bean>
+ 	<bean id="tilesConfigurer"
+		class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+		<property name="definitions">
+			<list>
+				<value>/WEB-INF/layouts/default.xml</value>
+			</list>
+		</property>
+	</bean> 
+	-->
+	<!-- JSP view resolver -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/views/jsp/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+</beans>

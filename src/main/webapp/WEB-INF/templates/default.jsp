@@ -9,12 +9,18 @@
 <title><tiles:insertAttribute name="title"></tiles:insertAttribute></title>
 </head>
 <body>
+
+<div>
 <tiles:insertAttribute name="header"></tiles:insertAttribute>
-<div/>
-Hello from Tiles!
-<div />
+</div>
+
+<div>
 <tiles:insertAttribute name="content"></tiles:insertAttribute>
-<div/>
-<tiles:insertAttribute name="footer"></tiles:insertAttribute>
+</div>
+
+<hr>
+<div class="footer">
+	<tiles:insertAttribute name="footer"></tiles:insertAttribute>
+</div>
 </body>
 </html>

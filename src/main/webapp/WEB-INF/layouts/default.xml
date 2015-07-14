@@ -12,8 +12,34 @@
 	</definition>
 	<definition name="home" extends="default.base">	
 		<put-attribute name="title" value="Application Homepage"></put-attribute>
-		<put-attribute name="header" value="/WEB-INF/tiles/headerTile.jsp"></put-attribute>
-		<put-attribute name="content" value="/WEB-INF/tiles/contentTile.jsp"></put-attribute>
-		<put-attribute name="footer" value="/WEB-INF/tiles/footerTile.jsp"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/tiles/home.jsp"></put-attribute>
+	</definition>
+	<definition name="addEmployee" extends="default.base">	
+		<put-attribute name="title" value="Add a new Employee Homepage"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/tiles/addEmployee.jsp"></put-attribute>
+	</definition>
+	<definition name="accountCreated" extends="default.base">	
+		<put-attribute name="title" value="Account created"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/tiles/accountCreated.jsp"></put-attribute>
+	</definition>
+	<definition name="addedNewEmployee" extends="default.base">	
+		<put-attribute name="title" value="New Employee created"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/tiles/addedNewEmployee.jsp"></put-attribute>
+	</definition>
+	<definition name="admin" extends="default.base">	
+		<put-attribute name="title" value="Admin Zone"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/tiles/admin.jsp"></put-attribute>
+	</definition>
+	<definition name="listAllEmployeeDetails" extends="default.base">	
+		<put-attribute name="title" value="Listing All Employee Details"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/tiles/listAllEmployeeDetails.jsp"></put-attribute>
+	</definition>
+	<definition name="listAllEmployees" extends="default.base">	
+		<put-attribute name="title" value="Listing all employees"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/tiles/listAllEmployees.jsp"></put-attribute>
+	</definition>
+	<definition name="newAccount" extends="default.base">	
+		<put-attribute name="title" value="Adding New Account"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/tiles/newAccount.jsp"></put-attribute>
 	</definition>
 </tiles-definitions>

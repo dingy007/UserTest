@@ -73,7 +73,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value="/addNewEmployee", method=RequestMethod.POST)
-	public ModelAndView addNewEmployee(@ModelAttribute("user") @Valid Employee employee, BindingResult result) {
+	public ModelAndView addNewEmployee(@ModelAttribute("employee") @Valid Employee employee, BindingResult result) {
 		ModelAndView mav = new ModelAndView();
 		if (result.hasErrors()) {
 			logger.info("    -> @UserController.addNewEmployee has Errors");
