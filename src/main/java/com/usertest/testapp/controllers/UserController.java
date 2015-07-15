@@ -1,5 +1,8 @@
 package com.usertest.testapp.controllers;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -14,6 +17,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.usertest.testapp.domains.Details;
@@ -111,6 +116,40 @@ public class UserController {
 		logger.info("    -> @UserController.showAdminPage.");
 		logger.info("    -> @UserController.showAdminPage completed serving admin.jsp");
 		return "admin";
+	}
+	
+	@RequestMapping(value="/uploadFile")
+	public String showUploadFilePage() {
+		logger.info("    -> @UserController.showUploadFilePage.");
+		logger.info("    -> @UserController.showUploadFilePage completed serving uploadFile.jsp");
+		return "uploadFile";
+	}
+	
+	@RequestMapping(value="/uploadingFile", method=RequestMethod.POST)
+	public String handleFileUpload(@RequestParam("name") String name, @RequestParam("file") MultipartFile file) {
+		logger.info("    -> @UserController.handleFileUpload.");
+//		File filePath = new File("C:/Users/dineshkp/Desktop/GitRepo_local/tempdir/" + name);
+		File filePath = new File(name);
+		
+		if(!file.isEmpty()) {
+			try {
+				byte[] bytes = file.getBytes();
+				BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(filePath));
+				stream.write(bytes);
+				stream.close();
+				logger.info("    -> @UserController.handleFileUpload File uploaded successfully!");
+			}
+			catch (Exception err) {
+				logger.info("    -> @UserController.handleFileUpload Exception during File Creation.");
+				return "errors";
+			}
+		}
+		else {
+			logger.info("    -> @UserController.handleFileUpload File is empty!");
+			return "errors";
+		}
+		logger.info("    -> @UserController.handleFileUpload completed serving uploadSuccess.jsp");
+		return "uploadSuccess";
 	}
 
 }

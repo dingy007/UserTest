@@ -1,4 +1,5 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <div class="container">
 	<div class="row">
@@ -33,6 +34,8 @@
 
 	<br>
 	
+	<a href="<c:url value='/uploadFile'/>">Upload File</a>
+	<br>
 	<sec:authorize access="!isAuthenticated()">
 		<p><a href="<c:url value='/login' />">Login</a></p>
 	</sec:authorize>

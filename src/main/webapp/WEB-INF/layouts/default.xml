@@ -58,4 +58,12 @@
 		<put-attribute name="title" value="An Exception occured"></put-attribute>
 		<put-attribute name="content" value="/WEB-INF/tiles/errors.jsp"></put-attribute>
 	</definition>
+	<definition name="uploadFile" extends="default.base">	
+		<put-attribute name="title" value="Select file for upload"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/tiles/uploadFile.jsp"></put-attribute>
+	</definition>
+	<definition name="uploadSuccess" extends="default.base">	
+		<put-attribute name="title" value="Upload Success!"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/tiles/uploadSuccess.jsp"></put-attribute>
+	</definition>
 </tiles-definitions>

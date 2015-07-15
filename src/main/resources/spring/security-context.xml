@@ -35,6 +35,9 @@
 		<security:intercept-url pattern="/home" access="permitAll" />
 		<!-- <security:intercept-url pattern="/resources/public/**" access="permitAll" /> -->
 		<security:intercept-url pattern="/static/**" access="permitAll" />
+		<security:intercept-url pattern="/uploadFile" access="permitAll" />
+		<security:intercept-url pattern="/uploadingFile" access="permitAll" />
+		<security:intercept-url pattern="/uploadSuccess" access="permitAll" />
 		<!-- 
 		<security:intercept-url pattern="/static/jquery/**" access="permitAll" />
 		<security:intercept-url pattern="/static/js/**" access="permitAll" />

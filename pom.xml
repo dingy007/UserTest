@@ -37,8 +37,27 @@
 				<artifactId>maven-resources-plugin</artifactId>
 				<version>2.7</version>
 			</dependency> -->
+			<!-- Apache Commons FileUpload -->
+			<dependency>
+			    <groupId>commons-fileupload</groupId>
+			    <artifactId>commons-fileupload</artifactId>
+			    <version>1.3.1</version>
+			</dependency>
+			 
+			<!-- Apache Commons IO -->
+			<dependency>
+			    <groupId>commons-io</groupId>
+			    <artifactId>commons-io</artifactId>
+			    <version>2.4</version>
+			</dependency>
+<!-- 			
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>javax.servlet-api</artifactId>
+				<version>3.1.0</version>
+			</dependency>
   	
-		<!-- Database Related dependencies -->
+ -->		<!-- Database Related dependencies -->
 			<!-- Database H2 dependencies -->
 			<dependency>
 				<groupId>com.h2database</groupId>
@@ -295,6 +314,11 @@
 			<groupId>org.apache.tiles</groupId>
 			<artifactId>tiles-servlet</artifactId>
 			<version>3.0.5</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-integration</artifactId>
+			<version>1.2.4.RELEASE</version>
 		</dependency>
   	</dependencies>
 	
