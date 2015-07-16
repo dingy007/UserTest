@@ -129,14 +129,25 @@ public class UserController {
 	public String handleFileUpload(@RequestParam("name") String name, @RequestParam("file") MultipartFile file) {
 		logger.info("    -> @UserController.handleFileUpload.");
 //		File filePath = new File("C:/Users/dineshkp/Desktop/GitRepo_local/tempdir/" + name);
+		// String uploadFileHandler(@RequestParam("name") String name, @RequestParam("file") MultipartFile file) {
 		File filePath = new File(name);
 		
 		if(!file.isEmpty()) {
 			try {
 				byte[] bytes = file.getBytes();
-				BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(filePath));
+				String rootPath = System.getProperty("catalina.home");
+				File dir = new File(rootPath + File.separator + "tmpFiles");
+				if (!dir.exists()) {
+					dir.mkdirs();
+				}
+				//Create the file on the Server
+				File serverFile = new File(dir.getAbsoluteFile() + File.separator + name);
+				BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
 				stream.write(bytes);
 				stream.close();
+				
+				logger.info("Server file location: " + serverFile.getAbsolutePath());
+				
 				logger.info("    -> @UserController.handleFileUpload File uploaded successfully!");
 			}
 			catch (Exception err) {
