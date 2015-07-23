@@ -3,7 +3,9 @@ package com.usertest.testapp.controllers;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.security.Principal;
 import java.util.List;
+import java.util.Map;
 
 import javax.validation.Valid;
 
@@ -12,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -112,10 +115,14 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/admin")
-	public String showAdminPage() {
+	public ModelAndView showAdminPage(@ModelAttribute String user, BindingResult result, Principal principal) {
 		logger.info("    -> @UserController.showAdminPage.");
 		logger.info("    -> @UserController.showAdminPage completed serving admin.jsp");
-		return "admin";
+		// Use the principal to get the User
+		ModelAndView mav = new ModelAndView("admin", "user", principal.getName());
+		return mav;
+		//model.addAttribute("user", principal.getName());
+		//return "admin";
 	}
 	
 	@RequestMapping(value="/uploadFile")
