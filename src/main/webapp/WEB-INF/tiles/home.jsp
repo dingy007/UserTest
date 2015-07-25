@@ -53,4 +53,29 @@
 			<a href="#" onclick="document.forms[1].submit();return false;">Admin</a>
 		</form>
 	</sec:authorize>
+	<br>
+	<sec:authorize access="hasRole('ADMIN')"> 
+		<a href="<c:url value='/getmessages'/>">Messages(<span id="numberMessages">0</span>)</a>
+	</sec:authorize>
+	
+	<script type="text/javascript">
+	<!--
+	
+	function updateMessageLink(data) {
+		$("#numberMessages").text(data.number);
+		// alert(data.number);
+	}
+	function onLoad() {
+		// alert("Document loaded.");
+		updatePage();
+		window.setInterval(updatePage,5000);
+	}
+	function updatePage() {
+		//alert("updating page")
+		$.getJSON("<c:url value='/getmessages'/>", updateMessageLink);
+	}
+	
+	$(document).ready(onLoad);
+	//-->
+	</script>
 </div>

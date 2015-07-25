@@ -64,4 +64,15 @@ public class EmployeeSvc {
 		logger.info("->		@EmployeeSvc.deleteEmployeeByEmployeeId Completed");
 		return employeeDao.deleteEmployee(employeeId);
 	}
+	
+	@Transactional
+	public void saveOrUpdate(Employee employee) {
+		logger.info("->		@EmployeeSvc.saveOrUpdate");
+		if (employee.getEmployeeId() != 0) {
+			employeeDao.update(employee);
+		}
+		else 
+			employeeDao.addEmployee(employee);
+		logger.info("->		@EmployeeSvc.saveOrUpdate Completed");
+	}
 }

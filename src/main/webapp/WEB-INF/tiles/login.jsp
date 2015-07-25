@@ -16,6 +16,19 @@
 					<span class="loginerror">Login failed. Check your user-name &amp; password are correct.</span>
 				</p>
 			</c:if>
+			<!-- Alternatively can use the c:choose and c:when + c:otherwise tags 
+			<c:choose>
+				<c:when test="${param.error == null}">
+				<p>
+					<span class="loginerror">Login failed. Check your user-name &amp; password are correct.</span>
+				</p>
+				</c:when>
+				<c:otherwise>
+					</p>
+				</c:otherwise>
+			</c:choose>
+			
+			 -->
 			<br>
 			<form name="f" action="${pageContext.request.contextPath}/login" method="POST"> 
 				<table>

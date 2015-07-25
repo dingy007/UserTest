@@ -81,4 +81,11 @@ public class Employeedao {
 		return success;
 	}
 
+	public void update(Employee employee) {
+		logger.info("->		@Employeedao.deleteEmployee");
+		sessionFactory.getCurrentSession().update(employee);
+		logger.info("->		@Employeedao.deleteEmployee Completed");
+		
+	}
+
 }

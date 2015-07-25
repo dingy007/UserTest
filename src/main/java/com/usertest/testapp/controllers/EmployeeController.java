@@ -30,9 +30,9 @@ import com.usertest.testapp.services.DetailsSvc;
 import com.usertest.testapp.services.EmployeeSvc;
 
 @Controller
-public class UserController {
+public class EmployeeController {
 
-	Logger logger = LoggerFactory.getLogger(UserController.class);
+	Logger logger = LoggerFactory.getLogger(EmployeeController.class);
 	@Autowired
 	EmployeeSvc employeeServices;
 	@Autowired
@@ -40,42 +40,42 @@ public class UserController {
 
 	@RequestMapping("/")
 	public String homePage() {
-		logger.info("    -> @UserController.homePage");
-		logger.info("    -> @UserController.homePage serving home.jsp");
+		logger.info("    -> @EmployeeController.homePage");
+		logger.info("    -> @EmployeeController.homePage serving home.jsp");
 		return "home";
 	}
 	
 	@RequestMapping("/home")
 	public String gotoHomePage() {
-		logger.info("    -> @UserController.gotoHomePage");
-		logger.info("    -> @UserController.gotoHomePage serving home.jsp");
+		logger.info("    -> @EmployeeController.gotoHomePage");
+		logger.info("    -> @EmployeeController.gotoHomePage serving home.jsp");
 		return "home";
 	}
 
 	@RequestMapping(value="/showEmployeeForm", method=RequestMethod.GET)
 	public String showAddEmployeeForm(@ModelAttribute("employee") Employee employee, BindingResult result) {
-		logger.info("    -> @UserController.showAddEmployeeForm");
-		logger.info("    -> @UserController.showAddEmployeeForm serving addEmployee.jsp");
+		logger.info("    -> @EmployeeController.showAddEmployeeForm");
+		logger.info("    -> @EmployeeController.showAddEmployeeForm serving addEmployee.jsp");
 		return "addEmployee";
 	}
 
 	@RequestMapping(value="/listAllEmployees",method=RequestMethod.GET)
 	public ModelAndView showListAllEmployees() {
-		logger.info("    -> @UserController.showListAllEmployees");
+		logger.info("    -> @EmployeeController.showListAllEmployees");
 		List<Employee> employeeList = employeeServices.listAllEmployees();
 
-		logger.info("    -> @UserController.showListAllEmployees : Listing all usersList");
+		logger.info("    -> @EmployeeController.showListAllEmployees : Listing all usersList");
 		
 		ModelAndView mav = new ModelAndView("listAllEmployees");
 		mav.addObject("employeesList", employeeList);
-		logger.info("    -> @UserController.showListAllEmployees serving listAllEmployees.jsp");
+		logger.info("    -> @EmployeeController.showListAllEmployees serving listAllEmployees.jsp");
 		return mav;
 	}
 
 	@RequestMapping(value="/listAllEmployeeDetails",method=RequestMethod.GET)
 	public String showListAllUserDetails() {
-		logger.info("    -> @UserController.listAllEmployeeDetails");
-		logger.info("    -> @UserController.listAllEmployeeDetails completed serving listAllEmployeeDetails.jsp");
+		logger.info("    -> @EmployeeController.listAllEmployeeDetails");
+		logger.info("    -> @EmployeeController.listAllEmployeeDetails completed serving listAllEmployeeDetails.jsp");
 
 		return "listAllEmployeeDetails";
 	}
@@ -84,40 +84,41 @@ public class UserController {
 	public ModelAndView addNewEmployee(@ModelAttribute("employee") @Valid Employee employee, BindingResult result) {
 		ModelAndView mav = new ModelAndView();
 		if (result.hasErrors()) {
-			logger.info("    -> @UserController.addNewEmployee has Errors");
+			logger.info("    -> @EmployeeController.addNewEmployee has Errors");
 			mav.setViewName("addEmployee");
-			logger.info("    -> @UserController.addNewEmployee serving addUser.jsp again");
+			logger.info("    -> @EmployeeController.addNewEmployee serving addUser.jsp again");
 		}
 		else {
 				mav.setViewName("addedNewEmployee");
-				logger.info("    -> @UserController.addNewEmployee adding to table using the UserSvc(userServices)");
-				logger.info("    -> @UserController.addNewEmployee user has the values: " + employee.toString());
-				employeeServices.addEmployee(employee);
-				logger.info("    -> @UserController.addNewEmployee adding to table using the UserSvc(userServices) Completed");
+				logger.info("    -> @EmployeeController.addNewEmployee adding to table using the UserSvc(userServices)");
+				logger.info("    -> @EmployeeController.addNewEmployee user has the values: " + employee.toString());
+				// employeeServices.addEmployee(employee);
+				employeeServices.saveOrUpdate(employee);
+				logger.info("    -> @EmployeeController.addNewEmployee adding to table using the UserSvc(userServices) Completed");
 				Details details = new Details();
 				details.setEmployee(employee);
 				detailsServices.addDetails(details);
-				logger.info("    -> @UserController.addNewEmployee printing Details: " + details.toString());
-				logger.info("    -> @UserController.addNewEmployee adding to table Completed, serving addedNewEmployee.jsp.");
+				logger.info("    -> @EmployeeController.addNewEmployee printing Details: " + details.toString());
+				logger.info("    -> @EmployeeController.addNewEmployee adding to table Completed, serving addedNewEmployee.jsp.");
 		}
 		return mav;
 	}
 	
 	@RequestMapping(value="/delete/{employeeId}")
 	public String deleteEmployeeByEmployeeId(@PathVariable("employeeId") int employeeId) {
-		logger.info("    -> @UserController.deleteEmployeeByEmployeeId.");
+		logger.info("    -> @EmployeeController.deleteEmployeeByEmployeeId.");
 		boolean success = false;
 		success = employeeServices.deleteEmployeeByEmployeeId(employeeId);
 		if (!success) throw new DataAccessException("Unable to delete User with User Id: " + employeeId) {
 			private static final long serialVersionUID = 1L;}; 
-		logger.info("    -> @UserController.deleteEmployeeByEmployeeId Completed serving listAllEmployees.jsp");
+		logger.info("    -> @EmployeeController.deleteEmployeeByEmployeeId Completed serving listAllEmployees.jsp");
 		return "redirect:/listAllEmployees";
 	}
 	
 	@RequestMapping(value="/admin")
 	public ModelAndView showAdminPage(@ModelAttribute String user, BindingResult result, Principal principal) {
-		logger.info("    -> @UserController.showAdminPage.");
-		logger.info("    -> @UserController.showAdminPage completed serving admin.jsp");
+		logger.info("    -> @EmployeeController.showAdminPage.");
+		logger.info("    -> @EmployeeController.showAdminPage completed serving admin.jsp");
 		// Use the principal to get the User
 		ModelAndView mav = new ModelAndView("admin", "user", principal.getName());
 		return mav;
@@ -127,14 +128,14 @@ public class UserController {
 	
 	@RequestMapping(value="/uploadFile")
 	public String showUploadFilePage() {
-		logger.info("    -> @UserController.showUploadFilePage.");
-		logger.info("    -> @UserController.showUploadFilePage completed serving uploadFile.jsp");
+		logger.info("    -> @EmployeeController.showUploadFilePage.");
+		logger.info("    -> @EmployeeController.showUploadFilePage completed serving uploadFile.jsp");
 		return "uploadFile";
 	}
 	
 	@RequestMapping(value="/uploadingFile", method=RequestMethod.POST)
 	public String handleFileUpload(@RequestParam("name") String name, @RequestParam("file") MultipartFile file) {
-		logger.info("    -> @UserController.handleFileUpload.");
+		logger.info("    -> @EmployeeController.handleFileUpload.");
 //		File filePath = new File("C:/Users/dineshkp/Desktop/GitRepo_local/tempdir/" + name);
 		// String uploadFileHandler(@RequestParam("name") String name, @RequestParam("file") MultipartFile file) {
 		File filePath = new File(name);
@@ -152,21 +153,19 @@ public class UserController {
 				BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
 				stream.write(bytes);
 				stream.close();
-				
 				logger.info("Server file location: " + serverFile.getAbsolutePath());
-				
-				logger.info("    -> @UserController.handleFileUpload File uploaded successfully!");
+				logger.info("    -> @EmployeeController.handleFileUpload File uploaded successfully!");
 			}
 			catch (Exception err) {
-				logger.info("    -> @UserController.handleFileUpload Exception during File Creation.");
+				logger.info("    -> @EmployeeController.handleFileUpload Exception during File Creation.");
 				return "errors";
 			}
 		}
 		else {
-			logger.info("    -> @UserController.handleFileUpload File is empty!");
+			logger.info("    -> @EmployeeController.handleFileUpload File is empty!");
 			return "errors";
 		}
-		logger.info("    -> @UserController.handleFileUpload completed serving uploadSuccess.jsp");
+		logger.info("    -> @EmployeeController.handleFileUpload completed serving uploadSuccess.jsp");
 		return "uploadSuccess";
 	}
 

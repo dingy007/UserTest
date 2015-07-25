@@ -6633,4 +6633,8 @@ td {
 	position: absolute;
 }
 
+a.delete {
+	border: 1px solid red;
+}
+
 /*# sourceMappingURL=bootstrap.css.map */

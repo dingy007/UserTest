@@ -1,5 +1,11 @@
 package com.usertest.testapp.controllers;
 
+import java.security.Principal;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.validation.Valid;
 
 import org.hibernate.exception.ConstraintViolationException;
@@ -12,6 +18,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.usertest.testapp.domains.Users;
@@ -81,5 +88,28 @@ public class LoginController {
 		logger.info("    -> @LoginController.createAccount serving accountCreated.jsp");
 		return mav;
 //		return "accountCreated";
+	}
+	
+	// Produces a JSON value to JavaScript
+	@RequestMapping(value="/getmessages", method=RequestMethod.GET, produces="application/json")
+	@ResponseBody
+	public Map<String, Object> getMessages(Principal principal) {
+		List<String> messages = null;
+		if (principal == null) {
+			messages = new ArrayList<String>();
+		}
+		else {
+//			String username = principal.getName();
+			messages = new ArrayList<String>();
+			messages.add("This is message 1");
+			messages.add("This is message 2");
+			messages.add("This is message 3");
+			messages.add("This is message 4");
+		}
+		Map<String, Object> data = new HashMap<String, Object>();
+		data.put("messages", messages);
+		data.put("number", messages.size());
+		
+		return data;
 	}
 }
